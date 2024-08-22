@@ -1,0 +1,472 @@
+body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+header{
+  height: 50px;
+  background-color: oldlace;
+  font-size: 40px;
+  font-style: oblique;
+  font-weight: bold;
+  /* text-align: center; */
+  color:darkgreen;
+  padding: 10px;
+}
+nav{
+  background-color: oldlace;
+  padding: 10px;
+}
+nav button {
+   width: 150px;
+   height: 50px;
+   font-size: 16px; 
+}
+section {
+  background-color: white;
+}
+#id1, h1 {
+    background-color: aquamarine;
+}
+.myH1 {
+    background-color: lightgreen;
+}
+output {
+display: block;
+    /* width: 300px; */
+    border: 2px solid green;
+    padding: 5px;
+    padding-left: 12px;
+    margin: 2px;
+}
+#error_id {
+  display: block;
+      /* width: 300px; */
+      border: 2px solid red;
+      padding: 5px;
+      padding-left: 12px;
+      margin: 2px;
+  }
+
+.myFormLayout {
+    display: grid;
+    grid-template-columns: [labels] auto [controls] 100px [txt] 120px [rest]1fr;
+      grid-auto-flow: row;
+      grid-gap: .8em;
+}
+/*
+.myFormLayout>fieldset {
+  grid-column: span 4;
+}
+*/
+/*.some-form__fields {
+  display: contents;
+}
+*/
+.myFormLayout> legend,  
+.myFormLayout> label  {
+    grid-column: labels;
+    grid-row: auto;
+}
+.myFormLayout>input[type=submit],
+.myFormLayout>input[type=number]
+{
+    grid-column: controls;
+    grid-row: auto;
+}
+.myFormLayout>input[type=radio]
+{
+    grid-column: controls;
+    grid-row: auto;
+    float: left;
+}
+.myFormLayout >input[type=mail]{
+  grid-column: controls / span 2;
+  grid-row: auto;
+}
+.myFormLayout >input[type=text]{
+    grid-column: controls ;
+    grid-row: auto;
+}
+/*
+.myFormLayout output{
+    grid-column: labels / span 4;
+    grid-row: auto;
+}
+*/
+
+
+
+.scoretable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    border: 2px solid green;;
+    color: black;
+}
+.scoretable.greyed {
+  color: lightgray;
+}
+.scoretable td{
+    border: 1px solid green;
+    padding:6px;
+    height:25px;
+  }
+
+.scoretable .row-fill {
+    background-color:#a1dfa3;
+    border: 2px solid green;;
+    padding: 8px;
+}  
+
+.scoretable .right-text {
+    text-align: right;
+}
+.scoretable .right-left {
+    text-align: left;
+}
+/*
+  .scoretable tr:nth-child(even){background-color: #f2f2f2;}
+*/
+.scoretable tr:hover {background-color: #ddd;}
+  
+.scoretable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: white;
+    color: green;
+    border: 2px solid green;
+    padding:6px;
+    margin: 10px;
+    top: 10px;
+  }
+.table_id { 
+    display: inline-block;
+    background-color:burlywood;
+    width:250px;
+    height:70px;
+  }
+/* find column with dices; exemplifies advanced query selector */
+.scoretable>thead>tr:nth-child(2)>th:nth-child(2){
+ min-width: 140px;
+ text-align: center;
+}
+.scoretable>tbody>tr>td:nth-child(2){
+    text-align: right;
+}
+.scoretable>tbody>tr>td:nth-child(1){
+    text-align: right;
+}
+
+/*Fancy CSS*/
+
+/*Button*/
+/* From uiverse.io by @Ali-Tahmazi99 */
+/*I did change the colors*/
+button.calc {
+  display: inline-block;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #03045e;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease-in;
+  z-index: 1;
+ }
+ 
+ button.calc::before,
+ button.calc::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 100%;
+  transform: skew(15deg);
+  transition: all 0.5s;
+  overflow: hidden;
+  z-index: -1;
+ }
+ 
+ button.calc::before {
+  left: -10px;
+  background: #002363;
+ }
+ 
+ button.calc::after {
+  right: -10px;
+  background: #fc0000;
+ }
+ 
+ button.calc:hover::before,
+ button.calc:hover::after {
+  width: 58%;
+ }
+ 
+ button:hover.calc span {
+  color: #9f97c5;
+  transition: 0.3s;
+ }
+ 
+ button.calc span {
+  color: #03045e;
+  font-size: 18px;
+  transition: all 0.3s ease-in;
+ }
+ /*Fancy checkbox*/
+ /* From Uiverse.io by WhiteNervosa */
+ .customCheckBoxHolder {
+  margin: 5px;
+  display: flex;
+}
+
+.customCheckBox {
+  width: fit-content;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  padding: 2px 8px;
+  background-color: rgba(0, 0, 0, 0.16);
+  border-radius: 0px;
+  color: rgba(255, 255, 255, 0.7);
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 300ms;
+  transition-property: color, background-color, box-shadow;
+  display: flex;
+  height: 32px;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px 1px 1px 0px;
+  outline: none;
+  justify-content: center;
+  min-width: 55px;
+}
+
+.customCheckBox:hover {
+  background-color: #2c2c2c;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.23) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.17) 0px 2px 4px 1px;
+}
+
+.customCheckBox .inner {
+  font-size: 18px;
+  font-weight: 900;
+  pointer-events: none;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 300ms;
+  transition-property: transform;
+  transform: translateY(0px);
+}
+
+.customCheckBox:hover .inner {
+  transform: translateY(-2px);
+}
+
+/* Multiple Checkboxes can be chained together for a radio input */
+.customCheckBoxWrapper:first-of-type .customCheckBox {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border-right: 0px;
+}
+
+.customCheckBoxWrapper:last-of-type .customCheckBox {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  border-left: 0px;
+}
+
+.customCheckBoxInput {
+  display: none;
+}
+
+.customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox {
+  background-color: #2d6737;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.23) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.17) 0px 2px 4px 1px;
+}
+
+.customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox .inner {
+  transform: translateY(-2px);
+}
+
+.customCheckBoxInput:checked + .customCheckBoxWrapper .customCheckBox:hover {
+  background-color: #34723f;
+  box-shadow: rgba(0, 0, 0, 0.26) 0px -4px 1px 0px inset, rgba(255, 255, 255, 0.17) 0px -1px 1px 0px, rgba(0, 0, 0, 0.15) 0px 3px 6px 2px;
+}
+
+.customCheckBoxWrapper .customCheckBox:hover .inner {
+  transform: translateY(-2px);
+}
+/*Fancy radio, instead of button for material*/
+/* From Uiverse.io by Pradeepsaranbishnoi */
+:focus {
+  outline: 0;
+  border-color: #2260ff;
+  box-shadow: 0 0 0 4px #b5c9fc;
+}
+
+.mydict div {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+.mydict input[type="radio"] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.mydict input[type="radio"]:checked + span {
+  box-shadow: 0 0 0 0.0625em #0043ed;
+  background-color: #dee7ff;
+  z-index: 1;
+  color: #0043ed;
+}
+
+label span {
+  display: block;
+  cursor: pointer;
+  background-color: #fff;
+  padding: 0.375em .75em;
+  position: relative;
+  margin-left: .0625em;
+  box-shadow: 0 0 0 0.0625em #b5bfd9;
+  letter-spacing: .05em;
+  color: #3e4963;
+  text-align: center;
+  transition: background-color .5s ease;
+}
+
+label:first-child span {
+  border-radius: .375em 0 0 .375em;
+}
+
+label:last-child span {
+  border-radius: 0 .375em .375em 0;
+}
+
+/*Loader*/
+/* From Uiverse.io by alexruix */ 
+.loader {
+  width: 80px;
+  height: 50px;
+  position: relative;
+}
+
+.loader-text {
+  position: absolute;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  color: #C8B6FF;
+  animation: text_713 3.5s ease both infinite;
+  font-size: .8rem;
+  letter-spacing: 1px;
+}
+
+.load {
+  background-color: #9A79FF;
+  border-radius: 50px;
+  display: block;
+  height: 16px;
+  width: 16px;
+  bottom: 0;
+  position: absolute;
+  transform: translateX(64px);
+  animation: loading_713 3.5s ease both infinite;
+}
+
+.load::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #D1C2FF;
+  border-radius: inherit;
+  animation: loading2_713 3.5s ease both infinite;
+}
+
+@keyframes text_713 {
+  0% {
+    letter-spacing: 1px;
+    transform: translateX(0px);
+  }
+
+  40% {
+    letter-spacing: 2px;
+    transform: translateX(26px);
+  }
+
+  80% {
+    letter-spacing: 1px;
+    transform: translateX(32px);
+  }
+
+  90% {
+    letter-spacing: 2px;
+    transform: translateX(0px);
+  }
+
+  100% {
+    letter-spacing: 1px;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes loading_713 {
+  0% {
+    width: 16px;
+    transform: translateX(0px);
+  }
+
+  40% {
+    width: 100%;
+    transform: translateX(0px);
+  }
+
+  80% {
+    width: 16px;
+    transform: translateX(64px);
+  }
+
+  90% {
+    width: 100%;
+    transform: translateX(0px);
+  }
+
+  100% {
+    width: 16px;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes loading2_713 {
+  0% {
+    transform: translateX(0px);
+    width: 16px;
+  }
+
+  40% {
+    transform: translateX(0%);
+    width: 80%;
+  }
+
+  80% {
+    width: 100%;
+    transform: translateX(0px);
+  }
+
+  90% {
+    width: 80%;
+    transform: translateX(15px);
+  }
+
+  100% {
+    transform: translateX(0px);
+    width: 16px;
+  }
+}
