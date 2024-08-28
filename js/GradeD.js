@@ -1,9 +1,10 @@
+export { DGrading };
 //Limits for imperfections for quality levels 
 //CHECK REMARKS VED ALLE
 //Gå igennem alle formler, og sørg for at alle er der OG ingen mangler
 //Gå igennem alle og gør noget ved "Not permitted"
-function DGrading(d, s, a, t, h){
-    DSurfacePore
+function DGrading(d, s, a, t, h) {
+    return DSurfacePore(s, d, t)
     DEndCraterPipe
     DIncompleteRootPenetration
     DShrinkageGroove
@@ -45,19 +46,21 @@ function DGrading(d, s, a, t, h){
  * Calculate Surface Pore 
  * @param {number} s weld thickness 
  * @param {number} d Diameter of gas pore
- * @param {number} a fillet weld
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function DSurfacePore(s, d, a = 0)
+function DSurfacePore(s, d, t) 
 {
-    if (s === 0){
-        s = a;
+    if (t >= 0.5) 
+    {
+        0.3 * s
     }
-    //C
-    d <= 0.2 * s //if valid return
+    if (t = 0.5 || t > 3)
+    {
+        //d <= 0,3 * s
+        return 0.3 * s;
+    }
 
-    //D 
-    d <= 0.3 * s //if valid return
 }
 //Åben kraterpore/End crater pipe
 //For a D
@@ -76,13 +79,18 @@ function DSurfacePore(s, d, a = 0)
  * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DEndCraterPipe(t, h)
-{
-    //C
-    h <= 0.1 * t //if valid return
-
-    //D 
-    h <= 0.2 * t //if valid return
+function DEndCraterPipe(t, h) 
+{    
+    if (t >= 0.5 && t <= 3 && t != 2) 
+        {
+            0.2 * t
+        }
+        if (t = 0.5 || t > 3)
+        {
+            //d <= 0,3 * s
+            return 0.3 * s;
+        }
+    
 }
 
 //Ref. ISO 6520-1 No: 401 Acceptniveauer t ≥ 0,5 mm (Missing for title) 
@@ -102,7 +110,7 @@ function DEndCraterPipe(t, h)
  * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DIncompleteRootPenetration(t, h){
+function DIncompleteRootPenetration(t, h) {
     h <= 0.2 * t
 }
 //Rodkærv/Shrinkage groove
@@ -128,13 +136,13 @@ function DIncompleteRootPenetration(t, h){
  * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DShrinkageGroove(t, h){
+function DShrinkageGroove(t, h) {
     //For a B (lower? B)
     h <= 0.05 * t //(max 0,5mm)* 
     //For a C
-    h <= 0.1 * t*
-    //For a D
-    h <= 0.2 + 0.1 * t
+    h <= 0.1 * t *
+        //For a D
+        h <= 0.2 + 0.1 * t
 }
 
 //Overvulst/Excess weld metal
@@ -151,9 +159,9 @@ function DShrinkageGroove(t, h){
  * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DExcessWeldMetal(b, h){
+function DExcessWeldMetal(b, h) {
     //For a B
-    h <= 1.0+0.1 * b //(max 5mm)* 
+    h <= 1.0 + 0.1 * b //(max 5mm)* 
     //For a C
     h <= 1.0 + 0.15 * b //(max 7 mm)
     //For a D
@@ -173,9 +181,9 @@ function DExcessWeldMetal(b, h){
  * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DExcessiveConvexity(b, h){
+function DExcessiveConvexity(b, h) {
     //For a B
-    h <= 1.0+0.1 * b //(max 3 mm)* 
+    h <= 1.0 + 0.1 * b //(max 3 mm)* 
     //For a C
     h <= 1.0 + 0.15 * b //(max 4 mm)
     //For a D
@@ -204,17 +212,17 @@ function DExcessiveConvexity(b, h){
  * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DExcessPenetration(b, h){
+function DExcessPenetration(b, h) {
     //For a B
-    h <= 1+0.1 * b //(max 3 mm)* 
+    h <= 1 + 0.1 * b //(max 3 mm)* 
     //For a C
     h <= 1.0 + 0.3 * b //(max 4 mm)
     //For a D
     h <= 1.0 + 0.6 * b //(max 5 mm)
 }
 //Forkert overgang / Incorrect Weld toe MISSING DATA
-function DIncorrectWeldToe(b){
-    
+function DIncorrectWeldToe(b) {
+
 }
 //Overløbning/Overlap
 //Acceptniveauer t ≥ 0,5 mm
@@ -226,7 +234,7 @@ function DIncorrectWeldToe(b){
  * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DOverlap(b, h){
+function DOverlap(b, h) {
     //For a B
     //For a C
     //For a D
@@ -253,7 +261,7 @@ function DOverlap(b, h){
  * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DNonFilledWeld(t, h){
+function DNonFilledWeld(t, h) {
     //For a B
     //For a C
     h <= 0.1 * t
@@ -261,9 +269,9 @@ function DNonFilledWeld(t, h){
     h <= 0.25 * t
 }
 //Gennembrænding/Burn through
-function DBurnThrough(){
+function DBurnThrough() {
     //Not permitted for any
-} 
+}
 
 
 //Ulige store ben/Excessive asymmetry of fillet weld
@@ -280,14 +288,14 @@ function DBurnThrough(){
  * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DExcessiveAsymmetryFilletWeld(a, h){
+function DExcessiveAsymmetryFilletWeld(a, h) {
     //For a B
     h <= 1.5 + 0.15 * a
     //For a C
     h <= 2 + 0.15 * a
     //For a D
     h <= 2 + 0.2 * a
-} 
+}
 //Indadvælving i roden / Root concavity
 //Acceptniveauer t = 0,5 - 3 mm
 //For a D
@@ -309,14 +317,14 @@ function DExcessiveAsymmetryFilletWeld(a, h){
  * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DRootConcavity(t, h){
+function DRootConcavity(t, h) {
     //For a B
     //Not permitted
     //For a C
     h <= 0.1 * t
     //For a D
     h <= 0.2 + 0.1 * t
-} 
+}
 //Porøsitet i rodvulst/Root porosity
 //Acceptniveauer t ≤ 0,5 mm
 //For a D
@@ -328,12 +336,12 @@ function DRootConcavity(t, h){
  * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function DRootPorosity(){
+function DRootPorosity() {
     //For a D
     //Tilladt lokalt/Locally permitted
     //For C & B 
     //Not permitted
-} 
+}
 //Fejl ved genstart/Poor start
 //Acceptniveauer t ≤ 0,5 mm
 //For a D
@@ -345,13 +353,13 @@ function DRootPorosity(){
  * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function DPoorStart(){
+function DPoorStart() {
     //Acceptniveauer t ≤ 0,5 mm
     //For a D
     //"Tilladt Grænsen afhænger af fejltypen opstået ved genstart. / 
     //The limit depends on the type of Imperfection occurred due to restart."
     //Not permitted for C & B
-} 
+}
 //Utilstrækkeligt A-mål / Insufficient throat thickness
 //For a B
 //Not permitted
@@ -371,13 +379,13 @@ function DPoorStart(){
  * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DInsufficientThroatThickness(a, h){
+function DInsufficientThroatThickness(a, h) {
     //Not permitted for B
     //For a C
     h <= 0.2
     //For a D
-    h <= 0.2 + 0.1 * a 
-} 
+    h <= 0.2 + 0.1 * a
+}
 //For stort a-mål / Excessive throat thickness
 //For a D 
 //Unlimited
@@ -391,16 +399,16 @@ function DInsufficientThroatThickness(a, h){
  * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DExcessiveThroatThickness(a, h){
+function DExcessiveThroatThickness(a, h) {
     //For a B
-    h <= 1,0 + 0,15 * a
+    h <= 1, 0 + 0, 15 * a
     //For a C
     h <= 0.2
     //For a D
-    h <= 0.2 + 0.1 * a 
+    h <= 0.2 + 0.1 * a
     //For a D 
     //Unlimited
-} 
+}
 //Tændsår / Stray arc
 //For C & B
 //Not permitted
@@ -413,7 +421,7 @@ function DExcessiveThroatThickness(a, h){
  * @param {number} a Nominal throat thickness of the fillet weld
  * @returns {string} First viable grade 
  */
-function DStrayArc(){
+function DStrayArc() {
     //For a B & C
     //Not permitted
     //For a D
@@ -430,7 +438,7 @@ function DStrayArc(){
  * @param {number} a Nominal throat thickness of the fillet weld
  * @returns {string} First viable grade 
  */
-function DSpatter(){
+function DSpatter() {
     //For D C B
     // Accept afhænger af anvendelse, fx materiale, korrosionsbeskyttelse/
     // Acceptance depends on application, e.g. material, corrosion protection
@@ -445,7 +453,7 @@ function DSpatter(){
  * @param {number} a Nominal throat thickness of the fillet weld
  * @returns {string} First viable grade 
  */
-function DTempercolour(){
+function DTempercolour() {
     //For D C B
     // Accept afhænger af anvendelse, fx materiale, korrosionsbeskyttelse /
     // Acceptance depends on application, e.g. material, corrosion protection
@@ -481,7 +489,7 @@ function DTempercolour(){
  * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DLinearMisalignment(t, h){
+function DLinearMisalignment(t, h) {
     //For a B
     h <= 0.2 + 0.1 * t
     //For a C
@@ -512,7 +520,7 @@ function DLinearMisalignment(t, h){
  * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DIncorrectRootGapOrFilletWelds(a, h){
+function DIncorrectRootGapOrFilletWelds(a, h) {
     //For a B
     h <= 0.2 + 0.1 * a
     //For a C

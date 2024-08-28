@@ -1,11 +1,15 @@
+import { DGrading } from '../js/GradeD.js';
 document.getElementById("gradeWeld").addEventListener("click", handleData);
 
 function handleData(event){
   console.log("test");
   document.getElementById("gradeWeld").disabled=true;
-  data = extractData();
+  let data = extractData();
 
-  SurfacePore
+  //console.log(DGrading(0, data.S, 0, data.T, 0))
+  if (data.Grading === "GradeD"){
+    console.log(DGrading(0, data.S, 0, data.T, 0))
+  }
 
 }
 
