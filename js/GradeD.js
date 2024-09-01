@@ -5,29 +5,29 @@ export { DGrading };
 //Gå igennem alle og gør noget ved "Not permitted"
 function DGrading(d, s, a, t, h, isFilletWeld) {
     return DCrack(t) +
-    DCraterCrack(t) +
-    DSurfacePore(s, d, t) +
-    DEndCraterPipe +
-    DIncompleteRootPenetration +
-    DShrinkageGroove +
-    DExcessWeldMetal +
-    DExcessiveConvexity + 
-    DExcessPenetration +
-    DIncorrectWeldToe + 
-    DOverlap +
-    DNonFilledWeld +
-    DBurnThrough +
-    DExcessiveAsymmetryFilletWeld +
-    DRootConcavity +
-    DRootPorosity +
-    DPoorStart +
-    DInsufficientThroatThickness+
-    DExcessiveThroatThickness+
-    DStrayArc+
-    DSpatter+
-    DTempercolour+
-    DLinearMisalignment+
-    DIncorrectRootGapOrFilletWelds
+        DCraterCrack(t) +
+        DSurfacePore(s, d, t) +
+        DEndCraterPipe +
+        DIncompleteRootPenetration +
+        DShrinkageGroove +
+        DExcessWeldMetal +
+        DExcessiveConvexity +
+        DExcessPenetration +
+        DIncorrectWeldToe +
+        DOverlap +
+        DNonFilledWeld +
+        DBurnThrough +
+        DExcessiveAsymmetryFilletWeld +
+        DRootConcavity +
+        DRootPorosity +
+        DPoorStart +
+        DInsufficientThroatThickness +
+        DExcessiveThroatThickness +
+        DStrayArc +
+        DSpatter +
+        DTempercolour +
+        DLinearMisalignment +
+        DIncorrectRootGapOrFilletWelds
 }
 
 /** 
@@ -36,9 +36,8 @@ function DGrading(d, s, a, t, h, isFilletWeld) {
  * @param {number} t Wall or plate thickness
  * @returns {string} Viable grade 
  */
-function DCrack(t) 
-{
-    if (t >= 0.5){
+function DCrack(t) {
+    if (t >= 0.5) {
         return "Not permitted/Ikke tilladt"
     }
 }
@@ -49,9 +48,8 @@ function DCrack(t)
  * @param {number} t Wall or plate thickness
  * @returns {string} Viable grade 
  */
-function DCraterCrack(t) 
-{
-    if (t >= 0.5){
+function DCraterCrack(t) {
+    if (t >= 0.5) {
         return "Not permitted/Ikke tilladt"
     }
 }
@@ -63,10 +61,8 @@ function DCraterCrack(t)
  * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function DSurfacePore(s, t) 
-{
-    if (t >= 0.5) 
-    {
+function DSurfacePore(s, t) {
+    if (t >= 0.5) {
         return `d <= ${0.3 * s}`;
     }
     return `d <= ${0.3 * s} (max 3mm)`;
@@ -79,17 +75,14 @@ function DSurfacePore(s, t)
  * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function DEndCraterPipe(t) 
-{    
-    if (t >= 0.5 && t < 3 && t != 2) 
-        {
-            return `*h <= ${0.2 * t}`;
-        }
-    if (t > 3)
-        {
-            return `*h <= ${0.2 * t}`;
-        }
-    
+function DEndCraterPipe(t) {
+    if (t >= 0.5 && t < 3 && t != 2) {
+        return `*h <= ${0.2 * t}`;
+    }
+    if (t > 3) {
+        return `*h <= ${0.2 * t}`;
+    }
+
 }
 
 /** 
@@ -127,10 +120,10 @@ function DIncompleteRootPenetration(t, h) {
  * @returns {string} First viable grade 
  */
 function DIntermittenUndercut(t) {
-    if (t > 3){
+    if (t > 3) {
         return `h <= ${0.2 * t} (max 1mm)`
     }
-    if (t >= 0.5 && t <= 3){
+    if (t >= 0.5 && t <= 3) {
         return `h <= ${0.2 * t} (max 1mm)*`
     }
     return "t out of range!";
@@ -144,10 +137,10 @@ function DIntermittenUndercut(t) {
  * @returns {string} First viable grade 
  */
 function DShrinkageGroove(t, h) {
-    if (t > 3){
+    if (t > 3) {
         return `h <= ${0.2 + 0.1 * t}*`;
     }
-    if (t >= 0.5 && t <= 3){
+    if (t >= 0.5 && t <= 3) {
         return `h <= ${0.2 * t} (max 2 mm)*`
     }
 }
@@ -182,11 +175,11 @@ function DExcessiveConvexity(b, h) {
  * @returns {string} First viable grade 
  */
 function DExcessPenetration(b, t) {
-    if (t > 3){
-        return `h <= ${1.0 + 1.6 * b} (max 5 mm)`; 
+    if (t > 3) {
+        return `h <= ${1.0 + 1.6 * b} (max 5 mm)`;
 
     }
-    if (t >= 0.5 && t <= 3){
+    if (t >= 0.5 && t <= 3) {
         return `h <= ${1.0 + 0.6 * b}`;
     }
 }
@@ -218,10 +211,10 @@ function DOverlap(b) {
  * @returns {string} First viable grade 
  */
 function DNonFilledWeld(t, h) {
-    if (t > 3){
+    if (t > 3) {
         return `h <= ${0.25 * t} (max 2 mm)`;
     }
-    if (t >= 0.5 && t <= 3){
+    if (t >= 0.5 && t <= 3) {
         return `h <= ${0.25 * t}*`;
     }
 }
@@ -252,10 +245,10 @@ function DExcessiveAsymmetryFilletWeld(a, h) {
  * @returns {string} First viable grade 
  */
 function DRootConcavity(t, h) {
-    if (t > 3){
+    if (t > 3) {
         return `h <= ${0.2 * t} (max 2 mm)*`;
     }
-    if (t >= 0.5 && t <= 3){
+    if (t >= 0.5 && t <= 3) {
         return `h <= ${0.2 + 0.1 * t}`;
     }
 }
@@ -267,7 +260,7 @@ function DRootConcavity(t, h) {
  * @returns {string} First viable grade 
  */
 function DRootPorosity() {
-    if (t <= 0.5){
+    if (t <= 0.5) {
         return "Locally permitted/Tilladt lokalt"
     }
     return "Not allowed"
@@ -280,7 +273,7 @@ function DRootPorosity() {
  * @returns {string} First viable grade 
  */
 function DPoorStart(t) {
-    if (t <= 0.5){
+    if (t <= 0.5) {
         return "Tilladt Grænsen afhænger af fejltypen opstået ved genstart./The limit depends on the type of Imperfection occurred due to restart."
     }
     return "Not allowed"
@@ -294,10 +287,10 @@ function DPoorStart(t) {
  * @returns {string} First viable grade 
  */
 function DInsufficientThroatThickness(a, t) {
-    if (t > 3){
+    if (t > 3) {
         return `h <= ${0.3 + 0.1 * a} (max 2mm)*`;
     }
-    if (t <= 0.5 && t > 3){
+    if (t <= 0.5 && t > 3) {
         return `h <= ${0.2 + 0.1 * a}*`;
     }
 }
@@ -318,9 +311,9 @@ function DExcessiveThroatThickness(a, h) {
  * @returns {string} First viable grade 
  */
 function DStrayArc(t) {
-    if (t <= 0.5){
+    if (t <= 0.5) {
         return "Tilladt, hvis egenskaberne I grundmaterialet ikke påvirkes. / Permitted if the properties of the parent metal are not affected";
-    }    
+    }
 }
 
 /** 
@@ -330,7 +323,7 @@ function DStrayArc(t) {
  * @returns {string} First viable grade 
  */
 function DSpatter() {
-    if (t <= 0.5){
+    if (t <= 0.5) {
         return "Accept afhænger af anvendelse, fx materiale, korrosionsbeskyttelse/Acceptance depends on application, e.g. material, corrosion protection";
     }
 }
@@ -342,7 +335,7 @@ function DSpatter() {
  * @returns {string} First viable grade 
  */
 function DTempercolour(t) {
-    if (t <= 0.5){
+    if (t <= 0.5) {
         return "Accept afhænger af anvendelse, fx materiale, korrosionsbeskyttelse/Acceptance depends on application, e.g. material, corrosion protection"
     }
     return "t is in an unacceptable range! (t is greater than 0.5)"
@@ -356,17 +349,17 @@ function DTempercolour(t) {
  * @returns {string} First viable grade 
  */
 function DLinearMisalignment(t) {
-    if (t > 3){
+    if (t > 3) {
         return `h <= ${0.25 * t} (max 5mm)`;
     }
-    if (t <= 0.5){//THIS ONE IS SOMETHING ELSE
+    if (t <= 0.5) {//THIS ONE IS SOMETHING ELSE
         return `h <= ${0.5 * t} (max 4 mm)`;
     }
-    if (t <= 0.5 && t > 3){
+    if (t <= 0.5 && t > 3) {
         return `h <= ${0.2 + 0.25 * t}`;
     }
 
-    
+
 }
 
 /** 
@@ -376,11 +369,11 @@ function DLinearMisalignment(t) {
  * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DIncorrectRootGapOrFilletWelds(a, h) {
-    if (t > 3){
-    return `h <= ${0.5 + 0.1 * a}`;
+function DIncorrectRootGapOrFilletWelds(a, t) {
+    if (t > 3) {
+        return `h <= ${0.5 + 0.1 * a}`;
     }
-    if (t <= 0.5 && t > 3){
+    if (t <= 0.5 && t > 3) {
         return `h <= ${1 + 0.3 * a} (max 4 mm)`
     }
 }
