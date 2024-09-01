@@ -7,8 +7,14 @@ function handleData(event){
   let data = extractData();
 
   //console.log(DGrading(0, data.S, 0, data.T, 0))
+  if (data.Grading === "GradeB"){
+    console.log(BGrading(0, data.S, 0, data.T, 0, data.isFilletWeld))
+  }
+  if (data.Grading === "GradeC"){
+    console.log(CGrading(0, data.S, 0, data.T, 0, data.isFilletWeld))
+  }
   if (data.Grading === "GradeD"){
-    console.log(DGrading(0, data.S, 0, data.T, 0))
+    console.log(DGrading(0, data.S, 0, data.T, 0, data.isFilletWeld))
   }
 
 }
