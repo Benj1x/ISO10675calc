@@ -1,3 +1,5 @@
+import { BGrading } from '../js/GradeB.js';
+import { CGrading } from '../js/GradeC.js';
 import { DGrading } from '../js/GradeD.js';
 document.getElementById("gradeWeld").addEventListener("click", handleData);
 
@@ -7,16 +9,17 @@ function handleData(event){
   let data = extractData();
 
   //console.log(DGrading(0, data.S, 0, data.T, 0))
-  if (data.Grading === "GradeB"){
-    console.log(BGrading(0, data.S, 0, data.T, 0, data.isFilletWeld))
+  if (data.Grading.includes("GradeB")){
+    console.log(BGrading(0, data.T, data.isFilletWeld))
   }
-  if (data.Grading === "GradeC"){
-    console.log(CGrading(0, data.S, 0, data.T, 0, data.isFilletWeld))
+  if (data.Grading.includes("GradeC")){
+    console.log(CGrading(data.S, 0, data.T, data.isFilletWeld))
   }
-  if (data.Grading === "GradeD"){
-    console.log(DGrading(0, data.S, 0, data.T, 0, data.isFilletWeld))
+  if (data.Grading.includes("GradeD")){
+    console.log(DGrading(data.S, 0, data.T, data.isFilletWeld))
   }
-
+  //s, a, t, isFilletWeld
+  //localStorage.setItem()
 }
 
 function extractData(){

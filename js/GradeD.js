@@ -1,33 +1,35 @@
 export { DGrading };
-//Limits for imperfections for quality levels 
 //CHECK REMARKS VED ALLE
 //Gå igennem alle formler, og sørg for at alle er der OG ingen mangler
-//Gå igennem alle og gør noget ved "Not permitted"
-function DGrading(d, s, a, t, h, isFilletWeld) {
-    return DCrack(t) +
-        DCraterCrack(t) +
-        DSurfacePore(s, d, t) +
-        DEndCraterPipe +
-        DIncompleteRootPenetration +
-        DShrinkageGroove +
-        DExcessWeldMetal +
-        DExcessiveConvexity +
-        DExcessPenetration +
-        DIncorrectWeldToe +
-        DOverlap +
-        DNonFilledWeld +
-        DBurnThrough +
-        DExcessiveAsymmetryFilletWeld +
-        DRootConcavity +
-        DRootPorosity +
-        DPoorStart +
-        DInsufficientThroatThickness +
-        DExcessiveThroatThickness +
-        DStrayArc +
-        DSpatter +
-        DTempercolour +
-        DLinearMisalignment +
-        DIncorrectRootGapOrFilletWelds
+/*I needed a way to recognize when one result start, and one ends, realistically the performance doesn't matter too much*/
+function DGrading(s, a, t, isFilletWeld) {
+    return DCrack(t) +"|"+
+        DCraterCrack(t) +"|"+
+        DSurfacePore(s, t) +"|"+
+        DEndCraterPipe(t) +"|"+
+        DLackOfFusion() +"|"+
+        DMicroLackOfFusion()+"|"+
+        DIncompleteRootPenetration(t) +"|"+
+        DIntermittenUndercut(t)+"|"+
+        DShrinkageGroove(t) +"|"+
+        // DExcessWeldMetal(b) +"|"+
+        // DExcessiveConvexity(b) +"|"+
+        // DExcessPenetration(b, t) +"|"+
+        DIncorrectWeldToe() +"|"+
+        // DOverlap(b) +"|"+
+        DNonFilledWeld(t) +"|"+
+        DBurnThrough() +"|"+
+        DExcessiveAsymmetryFilletWeld(a) +"|"+
+        DRootConcavity(t) +"|"+
+        DRootPorosity(t) +"|"+
+        DPoorStart(t) +"|"+
+        DInsufficientThroatThickness(a, t) +"|"+
+        DExcessiveThroatThickness() +"|"+
+        DStrayArc(t) +"|"+
+        DSpatter(t) +"|"+
+        DTempercolour(t) +"|"+
+        DLinearMisalignment(t) +"|"+
+        DIncorrectRootGapOrFilletWelds(a, t)
 }
 
 /** 
@@ -86,7 +88,7 @@ function DEndCraterPipe(t) {
 }
 
 /** 
- * Bindingsfejl /* lack of fusion
+ * Bindingsfejl / lack of fusion
  * @returns {string} First viable grade 
  */
 function DLackOfFusion() {
@@ -106,10 +108,9 @@ function DMicroLackOfFusion() {
  * Calculate Incomplete root penetration 
  * Rodfejl/Incomplete root penetration
  * @param {number} t Wall or plate thickness
- * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DIncompleteRootPenetration(t, h) {
+function DIncompleteRootPenetration(t) {
     return `*h <= ${0.2 * t}`;
 }
 
@@ -133,10 +134,9 @@ function DIntermittenUndercut(t) {
  * Calculate Shrinkage Groove
  * Rodkærv/Shrinkage groove
  * @param {number} t Wall or plate thickness
- * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DShrinkageGroove(t, h) {
+function DShrinkageGroove(t) {
     if (t > 3) {
         return `h <= ${0.2 + 0.1 * t}*`;
     }
@@ -149,10 +149,9 @@ function DShrinkageGroove(t, h) {
  * Calculate Excess weld metal
  * Overvulst/Excess weld metal
  * @param {number} b Width of weld reinforcement
- * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DExcessWeldMetal(b, h) {
+function DExcessWeldMetal(b) {
     return `h <= ${1.0 + 0.25 * b} (max 10mm)`;
 }
 
@@ -160,10 +159,9 @@ function DExcessWeldMetal(b, h) {
  * Calculate Excessive Convexity
  * Konveks sømoverflade/Excessive convexity
  * @param {number} b Width of weld reinforcement
- * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DExcessiveConvexity(b, h) {
+function DExcessiveConvexity(b) {
     return `h <= ${1.0 + 0.25 * b} (max 5mm)`; //(max 5 mm)
 }
 
@@ -171,7 +169,7 @@ function DExcessiveConvexity(b, h) {
  * Calculate Excess penetration
  * Rodvulst/Excess penetration
  * @param {number} b Width of weld reinforcement
- * @param {number} t 
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
 function DExcessPenetration(b, t) {
@@ -207,10 +205,9 @@ function DOverlap(b) {
  * Calculate Non filled weld
  * Mangelfuld Opfyldning / Non filled weld
  * @param {number} t Wall or plate thickness
- * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DNonFilledWeld(t, h) {
+function DNonFilledWeld(t) {
     if (t > 3) {
         return `h <= ${0.25 * t} (max 2 mm)`;
     }
@@ -230,10 +227,9 @@ function DBurnThrough() {
  * Calculate Excessive asymmetry of fillet weld
  * Ulige store ben/Excessive asymmetry of fillet weld
  * @param {number} a Nominal throat thickness of the fillet weld
- * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DExcessiveAsymmetryFilletWeld(a, h) {
+function DExcessiveAsymmetryFilletWeld(a) {
     return `h <= ${2 + 0.2 * a}`;
 }
 
@@ -241,10 +237,9 @@ function DExcessiveAsymmetryFilletWeld(a, h) {
  * Calculate Root concavity
  * Indadvælving i roden / Root concavity
  * @param {number} t Wall or plate thickness
- * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function DRootConcavity(t, h) {
+function DRootConcavity(t) {
     if (t > 3) {
         return `h <= ${0.2 * t} (max 2 mm)*`;
     }
@@ -259,7 +254,7 @@ function DRootConcavity(t, h) {
  * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function DRootPorosity() {
+function DRootPorosity(t) {
     if (t <= 0.5) {
         return "Locally permitted/Tilladt lokalt"
     }
@@ -283,7 +278,7 @@ function DPoorStart(t) {
  * Calculate Insufficient throat thickness
  * Utilstrækkeligt A-mål / Insufficient throat thickness
  * @param {number} a Nominal throat thickness of the fillet weld
- * @param {number} h Height or width of imperfection
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
 function DInsufficientThroatThickness(a, t) {
@@ -300,14 +295,14 @@ function DInsufficientThroatThickness(a, t) {
  * For stort a-mål / Excessive throat thickness
  * @returns {string} First viable grade 
  */
-function DExcessiveThroatThickness(a, h) {
+function DExcessiveThroatThickness() {
     return "Unlimited/Ubegænset";
 }
 
 /** 
  * Calculate Stray arc
  * Tændsår / Stray arc
- * @param {number} t Nominal throat thickness of the fillet weld
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
 function DStrayArc(t) {
@@ -319,10 +314,10 @@ function DStrayArc(t) {
 /** 
  * Calculate Spatter
  * Svejsesprøjt / Spatter
- * @param {number} a Nominal throat thickness of the fillet weld
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function DSpatter() {
+function DSpatter(t) {
     if (t <= 0.5) {
         return "Accept afhænger af anvendelse, fx materiale, korrosionsbeskyttelse/Acceptance depends on application, e.g. material, corrosion protection";
     }
@@ -331,7 +326,7 @@ function DSpatter() {
 /** 
  * Calculate Tempercolour
  * Anløbsfarve / Tempercolour
- * @param {number} a Nominal throat thickness of the fillet weld
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
 function DTempercolour(t) {
@@ -345,7 +340,6 @@ function DTempercolour(t) {
  * Calculate Linear misalignment
  * Forsætning / Linear misalignment
  * @param {number} t Wall or plate thickness (nominal size)
- * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
 function DLinearMisalignment(t) {
@@ -358,15 +352,13 @@ function DLinearMisalignment(t) {
     if (t <= 0.5 && t > 3) {
         return `h <= ${0.2 + 0.25 * t}`;
     }
-
-
 }
 
 /** 
  * Calculate Incorrect root gap or fillet welds.
  * Dårlig tilpasning af rodspalten for kantsømme. / Incorrect root gap or fillet welds.
  * @param {number} a Nominal throat thickness of the fillet weld
- * @param {number} h Height or width of imperfection
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
 function DIncorrectRootGapOrFilletWelds(a, t) {

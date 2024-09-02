@@ -1,35 +1,35 @@
 export { CGrading };
-//Limits for imperfections for quality levels 
 //CHECK REMARKS VED ALLE
 //Gå igennem alle formler, og sørg for at alle er der OG ingen mangler
-//Gå igennem alle og gør noget ved "Not permitted"
-function CGrading(d, s, a, t, h, isFilletWeld) {
-    return CCrack(t) +
-        CCraterCrack
-    CSurfacePore
-    CEndCraterPipe
-    CLackOfFusion
-    CMicroLackOfFusion
-    CIncompleteRootPenetration
-    CShrinkageGroove
-    CExcessWeldMetal
-    CExcessiveConvexity
-    CExcessPenetration
-    CIncorrectWeldToe
-    COverlap
-    CNonFilledWeld
-    CBurnThrough
-    CExcessiveAsymmetryFilletWeld
-    CRootConcavity
-    CRootPorosity
-    CPoorStart
-    CInsufficientThroatThickness
-    CExcessiveThroatThickness
-    CStrayArc
-    CSpatter
-    CTempercolour
-    CLinearMisalignment
-    CIncorrectRootGapOrFilletWelds
+/*I needed a way to recognize when one result start, and one ends, realistically the performance doesn't matter too much*/
+function CGrading(s, a, t, isFilletWeld) {
+    return CCrack(t) +"|"+
+    CCraterCrack(t) +"|"+
+    CSurfacePore(s, t) +"|"+
+    CEndCraterPipe(t) +"|"+
+    CLackOfFusion() +"|"+
+    CMicroLackOfFusion()+"|"+
+    CIncompleteRootPenetration() +"|"+
+    CIntermittenUndercut(t)+"|"+
+    CShrinkageGroove(t) +"|"+
+    // CExcessWeldMetal(b, t) +"|"+
+    // CExcessiveConvexity(b, t) +"|"+
+    // CExcessPenetration(b, t) +"|"+
+    CIncorrectWeldToe(isFilletWeld) +"|"+
+    COverlap() +"|"+
+    CNonFilledWeld(t) +"|"+
+    CBurnThrough() +"|"+
+    CExcessiveAsymmetryFilletWeld(a, t) +"|"+
+    CRootConcavity(t) +"|"+
+    CRootPorosity(t) +"|"+
+    CPoorStart(t) +"|"+
+    CInsufficientThroatThickness(a, t) +"|"+
+    CExcessiveThroatThickness(a, t) +"|"+
+    CStrayArc() +"|"+
+    CSpatter(t) +"|"+
+    CTempercolour(t) +"|"+
+    CLinearMisalignment(t) +"|"+
+    CIncorrectRootGapOrFilletWelds(a, t)
 }
 
 /** 
@@ -76,7 +76,7 @@ function CSurfacePore(s, t) {
  * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function CEndCraterPipe(t, h) {
+function CEndCraterPipe(t) {
     if (t > 3) {
         return `h <= ${0.1 * t} (max 1 mm)`;
     }
@@ -103,11 +103,9 @@ function CMicroLackOfFusion() {
 /** 
  * Calculate Incomplete root penetration 
  * Rodfejl/Incomplete root penetration
- * @param {number} t Wall or plate thickness
- * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function CIncompleteRootPenetration(t, h) {
+function CIncompleteRootPenetration() {
     return "Not permitted/Ikke tilladt"
 }
 
@@ -131,10 +129,9 @@ function CIntermittenUndercut(t) {
  * Calculate Shrinkage Groove
  * Rodkærv/Shrinkage groove
  * @param {number} t Wall or plate thickness
- * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function CShrinkageGroove(t, h) {
+function CShrinkageGroove(t) {
     if (t > 3) {
         return `h <= ${0.1 * t} (max 1 mm)*`
     }
@@ -148,10 +145,10 @@ function CShrinkageGroove(t, h) {
  * Calculate Excess weld metal
  * Overvulst/Excess weld metal
  * @param {number} b Width of weld reinforcement
- * @param {number} h Height or width of imperfection
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function CExcessWeldMetal(b, h, t) {
+function CExcessWeldMetal(b, t) {
     if (t >= 0.5) {
         return `h <= ${1.0 + 0.15 * b} (max 7 mm)`
     }
@@ -161,10 +158,10 @@ function CExcessWeldMetal(b, h, t) {
  * Calculate Excessive Convexity
  * Konveks sømoverflade/Excessive convexity
  * @param {number} b Width of weld reinforcement
- * @param {number} h Height or width of imperfection
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function CExcessiveConvexity(b, h) {
+function CExcessiveConvexity(b, t) {
     if (t >= 0.5) {
         return `h <= ${1.0 + 0.15 * b} (max 4 mm)`
     }
@@ -174,10 +171,10 @@ function CExcessiveConvexity(b, h) {
  * Calculate Excess penetration
  * Rodvulst/Excess penetration
  * @param {number} b Width of weld reinforcement
- * @param {number} t 
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function CExcessPenetration(b, , t) {
+function CExcessPenetration(b, t) {
     if (t > 3) {
         return `h <= ${1.0 + 0.6 * b} (max 4 mm)`;
     }
@@ -189,6 +186,7 @@ function CExcessPenetration(b, , t) {
 /** 
  * Gets the acceptable angle for the weld toe
  * Forkert overgang / Incorrect Weld toe
+ * @param {boolean} isFilletWeld If it is a fillet weld or not
  * @returns {string} Acceptable angle (For D, alpha is the same for fillet and butt welds) 
  */
 function CIncorrectWeldToe(isFilletWeld) {
@@ -211,10 +209,9 @@ function COverlap() {
  * Calculate Non filled weld
  * Mangelfuld Opfyldning / Non filled weld
  * @param {number} t Wall or plate thickness
- * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function CNonFilledWeld(t, h) {
+function CNonFilledWeld(t) {
     if (t > 3) {
         return `h <= ${0.1 * t} (max 1 mm)`
     }
@@ -234,10 +231,10 @@ function CBurnThrough() {
  * Calculate Excessive asymmetry of fillet weld
  * Ulige store ben/Excessive asymmetry of fillet weld
  * @param {number} a Nominal throat thickness of the fillet weld
- * @param {number} h Height or width of imperfection
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function CExcessiveAsymmetryFilletWeld(a, h, t) {
+function CExcessiveAsymmetryFilletWeld(a, t) {
     if (t >= 0.5) {
         return `h <= ${2 + 0.15 * a}`;
     }
@@ -247,10 +244,9 @@ function CExcessiveAsymmetryFilletWeld(a, h, t) {
  * Calculate Root concavity
  * Indadvælving i roden / Root concavity
  * @param {number} t Wall or plate thickness
- * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
-function CRootConcavity(t, h) {
+function CRootConcavity(t) {
     if (t > 3) {
         return `h <= ${0.1 * t} (max 1mm)*`
     }
@@ -265,7 +261,7 @@ function CRootConcavity(t, h) {
  * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function CRootPorosity() {
+function CRootPorosity(t) {
     if (t <= 0.5) {
         return "Not permitted/Ikke tilladt"
     }
@@ -278,7 +274,7 @@ function CRootPorosity() {
  * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function CPoorStart() {
+function CPoorStart(t) {
     if (t <= 0.5) {
         return "Not permitted/Ikke tilladt"
     }
@@ -289,7 +285,7 @@ function CPoorStart() {
  * Calculate Insufficient throat thickness
  * Utilstrækkeligt A-mål / Insufficient throat thickness
  * @param {number} a Nominal throat thickness of the fillet weld
- * @param {number} h Height or width of imperfection
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
 function CInsufficientThroatThickness(a, t) {
@@ -305,7 +301,7 @@ function CInsufficientThroatThickness(a, t) {
  * Calculate Excessive Throat Thickness
  * For stort a-mål / Excessive throat thickness
  * @param {number} a Nominal throat thickness of the fillet weld
- * @param {number} h Height or width of imperfection
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
 function CExcessiveThroatThickness(a, t) {
@@ -317,20 +313,19 @@ function CExcessiveThroatThickness(a, t) {
 /** 
  * Calculate Stray arc
  * Tændsår / Stray arc
- * @param {number} a Nominal throat thickness of the fillet weld
  * @returns {string} First viable grade 
  */
-function CStrayArc(t) {
+function CStrayArc() {
     return "Not permitted/Ikke tilladt";
 }
 
 /** 
  * Calculate Spatter
  * Svejsesprøjt / Spatter
- * @param {number} a Nominal throat thickness of the fillet weld
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function CSpatter() {
+function CSpatter(t) {
     if (t <= 0.5) {
         return "Accept afhænger af anvendelse, fx materiale, korrosionsbeskyttelse/Acceptance depends on application, e.g. material, corrosion protection";
     }
@@ -339,7 +334,7 @@ function CSpatter() {
 /** 
  * Calculate Tempercolour
  * Anløbsfarve / Tempercolour
- * @param {number} a Nominal throat thickness of the fillet weld
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
 function CTempercolour(t) {
@@ -353,7 +348,6 @@ function CTempercolour(t) {
  * Calculate Linear misalignment
  * Forsætning / Linear misalignment
  * @param {number} t Wall or plate thickness (nominal size)
- * @param {number} h Height or width of imperfection
  * @returns {string} First viable grade 
  */
 function CLinearMisalignment(t) {
@@ -373,7 +367,7 @@ function CLinearMisalignment(t) {
  * Calculate Incorrect root gap or fillet welds.
  * Dårlig tilpasning af rodspalten for kantsømme. / Incorrect root gap or fillet welds.
  * @param {number} a Nominal throat thickness of the fillet weld
- * @param {number} h Height or width of imperfection
+ * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
 function CIncorrectRootGapOrFilletWelds(a, t) {
