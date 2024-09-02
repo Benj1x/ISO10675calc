@@ -2,7 +2,7 @@ import { BGrading } from '../js/GradeB.js';
 import { CGrading } from '../js/GradeC.js';
 import { DGrading } from '../js/GradeD.js';
 document.getElementById("gradeWeld").addEventListener("click", handleData);
-
+localStorage.clear();
 function handleData(event){
   console.log("test");
   document.getElementById("gradeWeld").disabled=true;
@@ -10,16 +10,20 @@ function handleData(event){
 
   //console.log(DGrading(0, data.S, 0, data.T, 0))
   if (data.Grading.includes("GradeB")){
-    console.log(BGrading(0, data.T, data.isFilletWeld))
+    const res = {Grade: 'D', data: BGrading(0, data.T, data.isFilletWeld)};//Create a proper json string instead
+    const resJson = JSON.stringify(res);
+    localStorage.setItem("results", resJson);
   }
   if (data.Grading.includes("GradeC")){
-    console.log(CGrading(data.S, 0, data.T, data.isFilletWeld))
+    const res = {Grade: 'C', data: CGrading(data.S, 0, data.T, data.isFilletWeld)};//Create a proper json string instead
+    const resJson = JSON.stringify(res);
+    localStorage.setItem("results", resJson);
   }
   if (data.Grading.includes("GradeD")){
-    console.log(DGrading(data.S, 0, data.T, data.isFilletWeld))
+    const res = {Grade: 'D', data: DGrading(data.S, 0, data.T, data.isFilletWeld)};//Create a proper json string instead
+    const resJson = JSON.stringify(res);
+    localStorage.setItem("results", resJson);
   }
-  //s, a, t, isFilletWeld
-  //localStorage.setItem()
 }
 
 function extractData(){

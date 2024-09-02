@@ -3,33 +3,17 @@ export { DGrading };
 //Gå igennem alle formler, og sørg for at alle er der OG ingen mangler
 /*I needed a way to recognize when one result start, and one ends, realistically the performance doesn't matter too much*/
 function DGrading(s, a, t, isFilletWeld) {
-    return DCrack(t) +"|"+
-        DCraterCrack(t) +"|"+
-        DSurfacePore(s, t) +"|"+
-        DEndCraterPipe(t) +"|"+
-        DLackOfFusion() +"|"+
-        DMicroLackOfFusion()+"|"+
-        DIncompleteRootPenetration(t) +"|"+
-        DIntermittenUndercut(t)+"|"+
-        DShrinkageGroove(t) +"|"+
-        // DExcessWeldMetal(b) +"|"+
-        // DExcessiveConvexity(b) +"|"+
-        // DExcessPenetration(b, t) +"|"+
-        DIncorrectWeldToe() +"|"+
-        // DOverlap(b) +"|"+
-        DNonFilledWeld(t) +"|"+
-        DBurnThrough() +"|"+
-        DExcessiveAsymmetryFilletWeld(a) +"|"+
-        DRootConcavity(t) +"|"+
-        DRootPorosity(t) +"|"+
-        DPoorStart(t) +"|"+
-        DInsufficientThroatThickness(a, t) +"|"+
-        DExcessiveThroatThickness() +"|"+
-        DStrayArc(t) +"|"+
-        DSpatter(t) +"|"+
-        DTempercolour(t) +"|"+
-        DLinearMisalignment(t) +"|"+
-        DIncorrectRootGapOrFilletWelds(a, t)
+    const DRes = { Crack: DCrack(t), CraterCrack: DCraterCrack(t), SurfacePore: DSurfacePore(s, t), EndCraterPipe: DEndCraterPipe(t),
+        LackOfFusion: DLackOfFusion(), MLackOfFusion: DMicroLackOfFusion(), IncompleteRPen: DIncompleteRootPenetration(t),
+        InterUcut: DIntermittenUndercut(t), ShrinkGroove: DShrinkageGroove(t), /*ExcessWeld: DExcessWeldMetal(b), ExcessConvex: DExcessiveConvexity(b), 
+        ExcessPen:  DExcessPenetration(b, t),*/ IncorrectWToe: DIncorrectWeldToe(), /*Overlap: DOverlap(b),*/ NonFW: DNonFilledWeld(t),
+        BurnThrough: DBurnThrough(), ExcessAsymmFW: DExcessiveAsymmetryFilletWeld(a), RootConcav: DRootConcavity(t), RootPoro: DRootPorosity(t),
+        PoorStart: DPoorStart(t), InsuffTT: DInsufficientThroatThickness(a, t), ExcessTT: DExcessiveThroatThickness(), StrayArc: DStrayArc(t),
+        Spatter: DSpatter(t), TemperColour: DTempercolour(t), LinearMis: DLinearMisalignment(t), IncorrRootGapOrFW: DIncorrectRootGapOrFilletWelds(a, t)
+    };
+    
+    return DRes;
+
 }
 
 /** 

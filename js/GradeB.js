@@ -3,33 +3,15 @@ export { BGrading };
 //Gå igennem alle formler, og sørg for at alle er der OG ingen mangler
 /*I needed a way to recognize when one result start, and one ends, realistically the performance doesn't matter too much*/
 function BGrading(a, t, isFilletWeld) {
-    return BCrack(t) +"|"+
-    BCraterCrack(t) +"|"+
-    BSurfacePore() +"|"+
-    BEndCraterPipe() +"|"+
-    BLackOfFusion() +"|"+
-    BMicroLackOfFusion()+"|"+
-    BIncompleteRootPenetration() +"|"+
-    BIntermittenUndercut(t)+"|"+
-    BShrinkageGroove(t) +"|"+
-    // BExcessWeldMetal(b) +"|"+
-    // BExcessiveConvexity(b) +"|"+
-    // BExcessPenetration(b, t) +"|"+
-    BIncorrectWeldToe(isFilletWeld) +"|"+
-    BOverlap() +"|"+
-    BNonFilledWeld(t) +"|"+
-    BBurnThrough() +"|"+
-    BExcessiveAsymmetryFilletWeld(t, a) +"|"+
-    BRootConcavity(t) +"|"+
-    BRootPorosity(t) +"|"+
-    BPoorStart(t) +"|"+
-    BInsufficientThroatThickness() +"|"+
-    BExcessiveThroatThickness(a, t) +"|"+
-    BStrayArc() +"|"+
-    BSpatter(t) +"|"+
-    BTempercolour(t) +"|"+
-    BLinearMisalignment(t) +"|"+
-    BIncorrectRootGapOrFilletWelds(a, t)
+    const BRes = {Crack: BCrack(t), CraterCrack: BCraterCrack(t), SurfacePore: BSurfacePore(), EndCraterPipe: BEndCraterPipe(),
+        LackOfFusion: BLackOfFusion(), MLackOfFusion: BMicroLackOfFusion(), IncompleteRPen: BIncompleteRootPenetration(),
+        InterUcut: BIntermittenUndercut(t), ShrinkGroove: BShrinkageGroove(t), /*ExcessWeld: BExcessWeldMetal(b), ExcessConvex: BExcessiveConvexity(b), 
+        ExcessPen: BExcessPenetration(b, t),*/ IncorrectWToe: BIncorrectWeldToe(isFilletWeld), Overlap: BOverlap(), NonFW: BNonFilledWeld(t),
+        BurnThrough: BBurnThrough(), ExcessAsymmFW: BExcessiveAsymmetryFilletWeld(t, a), RootConcav: BRootConcavity(t), RootPoro: BRootPorosity(t),
+        PoorStart: BPoorStart(t), InsuffTT: BInsufficientThroatThickness(), ExcessTT: BExcessiveThroatThickness(a, t), StrayArc: BStrayArc(),
+        Spatter: BSpatter(t), TemperColour: BTemperColour(t), LinearMis: BLinearMisalignment(t), IncorrRootGapOrFW: BIncorrectRootGapOrFilletWelds(a, t)
+    };
+    return BRes;
 }
 
 /** 
@@ -305,7 +287,7 @@ function BSpatter(t) {
  * @param {number} t Wall or plate thickness
  * @returns {string} First viable grade 
  */
-function BTempercolour(t) {
+function BTemperColour(t) {
     if (t <= 0.5) {
         return "Accept afhænger af anvendelse, fx materiale, korrosionsbeskyttelse/Acceptance depends on application, e.g. material, corrosion protection"
     }
