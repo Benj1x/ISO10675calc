@@ -5,7 +5,17 @@ const grading = localStorage.getItem("results");
 
 const res = JSON.parse(grading);
 
-console.log(res.data);
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function () {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
 
 const pCrack = document.getElementById("Crack");
 const pCraterCrack = document.getElementById("CraterCrack");
@@ -58,15 +68,3 @@ pSpatter.textContent = data.Spatter;
 pTemperColour.textContent = data.TemperColour;
 pLinearMis.textContent = data.LinearMis;
 pIncorrRootGapOrFW.textContent = data.IncorrRootGapOrFW;
-
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function () {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight) {
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    }
-  });
-}
