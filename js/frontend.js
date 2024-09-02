@@ -4,7 +4,6 @@ import { DGrading } from '../js/GradeD.js';
 document.getElementById("gradeWeld").addEventListener("click", handleData);
 localStorage.clear();
 function handleData(event) {
-  console.log("test");
   document.getElementById("gradeWeld").disabled = true;
   let data = extractData();
 
@@ -23,6 +22,8 @@ function handleData(event) {
     const resJson = JSON.stringify(res);
     localStorage.setItem("results", resJson);
   }
+
+  window.location.href="results.html"
 }
 
 function extractData() {

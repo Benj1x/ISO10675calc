@@ -17,6 +17,11 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
+document.getElementById("Back").addEventListener("click", home);
+function home(){
+  window.location.href="index.html"
+}
+
 const pCrack = document.getElementById("Crack");
 const pCraterCrack = document.getElementById("CraterCrack");
 const pSurfacePore = document.getElementById("SurfacePore");
