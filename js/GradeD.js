@@ -49,9 +49,9 @@ function DCraterCrack(t) {
  */
 function DSurfacePore(s, t) {
     if (t >= 0.5) {
-        return `d <= ${0.3 * s}`;
+        return `d <= ${(0.3 * s).toFixed(1)}`;
     }
-    return `d <= ${0.3 * s} (max 3mm)`;
+    return `d <= ${(0.3 * s).toFixed(1)} (max 3mm)`;
 
 }
 
@@ -63,10 +63,10 @@ function DSurfacePore(s, t) {
  */
 function DEndCraterPipe(t) {
     if (t >= 0.5 && t < 3 && t != 2) {
-        return `*h <= ${0.2 * t}`;
+        return `*h <= ${(0.2 * t).toFixed(1)}`;
     }
     if (t > 3) {
-        return `*h <= ${0.2 * t}`;
+        return `*h <= ${(0.2 * t).toFixed(1)}`;
     }
 
 }
@@ -95,7 +95,7 @@ function DMicroLackOfFusion() {
  * @returns {string} First viable grade 
  */
 function DIncompleteRootPenetration(t) {
-    return `*h <= ${0.2 * t}`;
+    return `*h <= ${(0.2 * t).toFixed(1)}`;
 }
 
 /** 
@@ -106,10 +106,10 @@ function DIncompleteRootPenetration(t) {
  */
 function DIntermittenUndercut(t) {
     if (t > 3) {
-        return `h <= ${0.2 * t} (max 1mm)`
+        return `h <= ${(0.2 * t).toFixed(1)} (max 1mm)`
     }
     if (t >= 0.5 && t <= 3) {
-        return `h <= ${0.2 * t} (max 1mm)*`
+        return `h <= ${(0.2 * t).toFixed(1)} (max 1mm)*`
     }
     return "t out of range!";
 }
@@ -122,10 +122,10 @@ function DIntermittenUndercut(t) {
  */
 function DShrinkageGroove(t) {
     if (t > 3) {
-        return `h <= ${0.2 + 0.1 * t}*`;
+        return `h <= ${(0.2 + 0.1 * t).toFixed(1)}*`;
     }
     if (t >= 0.5 && t <= 3) {
-        return `h <= ${0.2 * t} (max 2 mm)*`
+        return `h <= ${(0.2 * t).toFixed(1)} (max 2 mm)*`
     }
 }
 
@@ -136,7 +136,7 @@ function DShrinkageGroove(t) {
  * @returns {string} First viable grade 
  */
 function DExcessWeldMetal(b) {
-    return `h <= ${1.0 + 0.25 * b} (max 10mm)`;
+    return `h <= ${(1.0 + 0.25 * b).toFixed(1)} (max 10mm)`;
 }
 
 /** 
@@ -146,7 +146,7 @@ function DExcessWeldMetal(b) {
  * @returns {string} First viable grade 
  */
 function DExcessiveConvexity(b) {
-    return `h <= ${1.0 + 0.25 * b} (max 5mm)`; //(max 5 mm)
+    return `h <= ${(1.0 + 0.25 * b).toFixed(1)} (max 5mm)`; //(max 5 mm)
 }
 
 /** 
@@ -158,11 +158,11 @@ function DExcessiveConvexity(b) {
  */
 function DExcessPenetration(b, t) {
     if (t > 3) {
-        return `h <= ${1.0 + 1.6 * b} (max 5 mm)`;
+        return `h <= ${(1.0 + 1.6 * b).toFixed(1)} (max 5 mm)`;
 
     }
     if (t >= 0.5 && t <= 3) {
-        return `h <= ${1.0 + 0.6 * b}`;
+        return `h <= ${(1.0 + 0.6 * b).toFixed(1)}`;
     }
 }
 
@@ -182,7 +182,7 @@ function DIncorrectWeldToe() {
  * @returns {string} First viable grade 
  */
 function DOverlap(b) {
-    return `h <= ${0.2 * b}`;
+    return `h <= ${(0.2 * b).toFixed(1)}`;
 }
 
 /** 
@@ -193,10 +193,10 @@ function DOverlap(b) {
  */
 function DNonFilledWeld(t) {
     if (t > 3) {
-        return `h <= ${0.25 * t} (max 2 mm)`;
+        return `h <= ${(0.25 * t).toFixed(1)} (max 2 mm)`;
     }
     if (t >= 0.5 && t <= 3) {
-        return `h <= ${0.25 * t}*`;
+        return `h <= ${(0.25 * t).toFixed(1)}*`;
     }
 }
 
@@ -214,7 +214,7 @@ function DBurnThrough() {
  * @returns {string} First viable grade 
  */
 function DExcessiveAsymmetryFilletWeld(a) {
-    return `h <= ${2 + 0.2 * a}`;
+    return `h <= ${(2 + 0.2 * a).toFixed(1)}`;
 }
 
 /** 
@@ -225,10 +225,10 @@ function DExcessiveAsymmetryFilletWeld(a) {
  */
 function DRootConcavity(t) {
     if (t > 3) {
-        return `h <= ${0.2 * t} (max 2 mm)*`;
+        return `h <= ${(0.2 * t).toFixed(1)} (max 2 mm)*`;
     }
     if (t >= 0.5 && t <= 3) {
-        return `h <= ${0.2 + 0.1 * t}`;
+        return `h <= ${(0.2 + 0.1 * t).toFixed(1)}`;
     }
 }
 
@@ -267,10 +267,10 @@ function DPoorStart(t) {
  */
 function DInsufficientThroatThickness(a, t) {
     if (t > 3) {
-        return `h <= ${0.3 + 0.1 * a} (max 2mm)*`;
+        return `h <= ${(0.3 + 0.1 * a).toFixed(1)} (max 2mm)*`;
     }
     if (t <= 0.5 && t > 3) {
-        return `h <= ${0.2 + 0.1 * a}*`;
+        return `h <= ${(0.2 + 0.1 * a).toFixed(1)}*`;
     }
 }
 
@@ -303,7 +303,7 @@ function DStrayArc(t) {
  */
 function DSpatter(t) {
     if (t <= 0.5) {
-        return "Accept afhænger af anvendelse, fx materiale, korrosionsbeskyttelse/Acceptance depends on application, e.g. material, corrosion protection";
+        return "Accept afhænger af anvendelse, fx materiale, korrosionsbeskyttelse / Acceptance depends on application, e.g. material, corrosion protection";
     }
 }
 
@@ -315,7 +315,7 @@ function DSpatter(t) {
  */
 function DTempercolour(t) {
     if (t <= 0.5) {
-        return "Accept afhænger af anvendelse, fx materiale, korrosionsbeskyttelse/Acceptance depends on application, e.g. material, corrosion protection"
+        return "Accept afhænger af anvendelse, fx materiale, korrosionsbeskyttelse / Acceptance depends on application, e.g. material, corrosion protection"
     }
     return "t is in an unacceptable range! (t is greater than 0.5)"
 }
@@ -328,13 +328,13 @@ function DTempercolour(t) {
  */
 function DLinearMisalignment(t) {
     if (t > 3) {
-        return `h <= ${0.25 * t} (max 5mm)`;
+        return `h <= ${(0.25 * t).toFixed(1)} (max 5mm)`;
     }
     if (t <= 0.5) {//THIS ONE IS SOMETHING ELSE
-        return `h <= ${0.5 * t} (max 4 mm)`;
+        return `h <= ${(0.5 * t).toFixed(1)} (max 4 mm)`;
     }
     if (t <= 0.5 && t > 3) {
-        return `h <= ${0.2 + 0.25 * t}`;
+        return `h <= ${(0.2 + 0.25 * t).toFixed(1)}`;
     }
 }
 
@@ -347,9 +347,9 @@ function DLinearMisalignment(t) {
  */
 function DIncorrectRootGapOrFilletWelds(a, t) {
     if (t > 3) {
-        return `h <= ${0.5 + 0.1 * a}`;
+        return `h <= ${(0.5 + 0.1 * a).toFixed(1)}`;
     }
     if (t <= 0.5 && t > 3) {
-        return `h <= ${1 + 0.3 * a} (max 4 mm)`
+        return `h <= ${(1 + 0.3 * a).toFixed(1)} (max 4 mm)`
     }
 }

@@ -22,7 +22,7 @@ function BGrading(a, t, b, isFilletWeld) {
  */
 function BCrack(t) {
     if (t >= 0.5) {
-        return "Not permitted/Ikke tilladt"
+        return "Not permitted / Ikke tilladt"
     }
 }
 
@@ -34,7 +34,7 @@ function BCrack(t) {
  */
 function BCraterCrack(t) {
     if (t >= 0.5) {
-        return "Not permitted/Ikke tilladt"
+        return "Not permitted / Ikke tilladt"
     }
 }
 
@@ -44,7 +44,7 @@ function BCraterCrack(t) {
  * @returns {string} First viable grade 
  */
 function BSurfacePore() {
-    return "Not allowed/Ikke tilladt";
+    return "Not allowed / Ikke tilladt";
 }
 
 /** 
@@ -53,7 +53,7 @@ function BSurfacePore() {
  * @returns {string} First viable grade 
  */
 function BEndCraterPipe() {
-    return "Not allowed/Ikke tilladt";
+    return "Not allowed / Ikke tilladt";
 }
 
 /** 
@@ -61,7 +61,7 @@ function BEndCraterPipe() {
  * @returns {string} First viable grade 
  */
 function BLackOfFusion() {
-    return "Not permitted/Ikke tilladt"
+    return "Not permitted / Ikke tilladt"
 }
 
 /** 
@@ -69,7 +69,7 @@ function BLackOfFusion() {
  * @returns {string} First viable grade 
  */
 function BMicroLackOfFusion() {
-    return "Not permitted/Ikke tilladt"
+    return "Not permitted / Ikke tilladt"
     //Mikrobindingsfejl kun detekterbare ved mikroundersøglse / Only detected by micro examination
 }
 
@@ -80,7 +80,7 @@ function BMicroLackOfFusion() {
  * @returns {string} First viable grade 
  */
 function BIncompleteRootPenetration() {
-    return "Not Allowed/Ikke Tilladt";
+    return "Not Allowed / Ikke Tilladt";
 }
 
 /** 
@@ -91,7 +91,7 @@ function BIncompleteRootPenetration() {
  */
 function BIntermittenUndercut(t) {
     if (t > 3) {
-        return `h <= ${0.05 * t} (max 0,5mm)`
+        return `h <= ${(0.05 * t).toFixed(1)} (max 0,5mm)`
     }
     return "t out of range!";
 }
@@ -104,7 +104,7 @@ function BIntermittenUndercut(t) {
  */
 function BShrinkageGroove(t) {
     if (t > 3) {
-        return `h <= ${0.05 * t} (max 0,5mm)*`;
+        return `h <= ${(0.05 * t).toFixed(1)} (max 0,5mm)*`;
     }
 
     return "Not allowed/Ikke tilladt";
@@ -118,7 +118,7 @@ function BShrinkageGroove(t) {
  */
 function BExcessWeldMetal(b) {
     //For a B
-    return `h <= ${1.0 + 0.1 * b} (max 5mm)`;
+    return `h <= ${(1.0 + 0.1 * b).toFixed(1)} (max 5mm)`;
 }
 
 /** 
@@ -129,7 +129,7 @@ function BExcessWeldMetal(b) {
  */
 function BExcessiveConvexity(b) {
     //For a B
-    return `h <= ${1.0 + 0.1 * b} (max 3 mm)*`
+    return `h <= ${(1.0 + 0.1 * b).toFixed(1)} (max 3 mm)*`
 }
 
 /** 
@@ -141,10 +141,10 @@ function BExcessiveConvexity(b) {
  */
 function BExcessPenetration(b, t) {
     if (t > 3) {
-        return `h <= ${1 + 0.2 * b} (max 3 mm)*`
+        return `h <= ${(1 + 0.2 * b).toFixed(1)} (max 3 mm)*`
     }
     if (t >= 0.5 && t <= 3) {
-        return `h <= ${1 + 0.1 * b}`
+        return `h <= ${(1 + 0.1 * b).toFixed(1)}`
     }
 }
 
@@ -168,7 +168,7 @@ function BIncorrectWeldToe(isFilletWeld) {
  * @returns {string} First viable grade 
  */
 function BOverlap() {
-    return "Not allowed/Ikke tilladt";
+    return "Not allowed / Ikke tilladt";
 }
 
 /** 
@@ -179,16 +179,16 @@ function BOverlap() {
  */
 function BNonFilledWeld(t) {
     if (t > 3) {
-        return `h <= ${0.05 * t} (max 0,5 mm)`
+        return `h <= ${(0.05 * t).toFixed(1)} (max 0,5 mm)`
     }
-    return "Not permitted/Ikke tilladt";
+    return "Not permitted / Ikke tilladt";
 }
 
 /**
  *Gennembrænding/Burn through
 */
 function BBurnThrough() {
-    return "Not permitted/Ikke tilladt";
+    return "Not permitted / Ikke tilladt";
 }
 
 /** 
@@ -200,7 +200,7 @@ function BBurnThrough() {
  */
 function BExcessiveAsymmetryFilletWeld(t, a) {
     if (t >= 0.5) {
-        return `h <= ${1.5 + 0.15 * a}`;
+        return `h <= ${(1.5 + 0.15 * a).toFixed(1)}`;
     }
 }
 
@@ -212,9 +212,9 @@ function BExcessiveAsymmetryFilletWeld(t, a) {
  */
 function BRootConcavity(t) {
     if (t > 3) {
-        return `h <= ${0.05 * t} (max 0,5mm)*`;
+        return `h <= ${(0.05 * t).toFixed(1)} (max 0,5mm)*`;
     }
-    return "Not allowed/Ikke tilladt";
+    return "Not allowed / Ikke tilladt";
 }
 
 /** 
@@ -223,7 +223,7 @@ function BRootConcavity(t) {
  * @returns {string} First viable grade 
  */
 function BRootPorosity() {
-    return "Not allowed/Ikke tilladt";
+    return "Not allowed / Ikke tilladt";
 }
 
 /** 
@@ -232,7 +232,7 @@ function BRootPorosity() {
  * @returns {string} First viable grade 
  */
 function BPoorStart() {
-    return "Not allowed/Ikke tilladt";
+    return "Not allowed / Ikke tilladt";
 }
 
 /** 
@@ -241,7 +241,7 @@ function BPoorStart() {
  * @returns {string} First viable grade 
  */
 function BInsufficientThroatThickness() {
-    return "Not allowed/Ikke tilladt";
+    return "Not allowed / Ikke tilladt";
 }
 
 /** 
@@ -253,7 +253,7 @@ function BInsufficientThroatThickness() {
  */
 function BExcessiveThroatThickness(a, t) {
     if (t <= 0.5) {
-        return `h <= ${1.0 + 0.15 * a} (max 3 mm)`;
+        return `h <= ${(1.0 + 0.15 * a)} (max 3 mm)`;
     }
     return "t is in an unacceptable range! (t is greater than 0.5)"
 }
@@ -264,7 +264,7 @@ function BExcessiveThroatThickness(a, t) {
  * @returns {string} First viable grade 
  */
 function BStrayArc() {
-    return "Not allowed/Ikke tilladt";
+    return "Not allowed / Ikke tilladt";
 }
 
 /** 
@@ -275,7 +275,7 @@ function BStrayArc() {
  */
 function BSpatter(t) {
     if (t <= 0.5) {
-        return "Accept afhænger af anvendelse, fx materiale, korrosionsbeskyttelse/Acceptance depends on application, e.g. material, corrosion protection"
+        return "Accept afhænger af anvendelse, fx materiale, korrosionsbeskyttelse / Acceptance depends on application, e.g. material, corrosion protection"
     }
     return "t is in an unacceptable range! (t is greater than 0.5)"
 
@@ -289,7 +289,7 @@ function BSpatter(t) {
  */
 function BTemperColour(t) {
     if (t <= 0.5) {
-        return "Accept afhænger af anvendelse, fx materiale, korrosionsbeskyttelse/Acceptance depends on application, e.g. material, corrosion protection"
+        return "Accept afhænger af anvendelse, fx materiale, korrosionsbeskyttelse / Acceptance depends on application, e.g. material, corrosion protection"
     }
     return "t is in an unacceptable range! (t is greater than 0.5)"
 }
@@ -302,13 +302,13 @@ function BTemperColour(t) {
  */
 function BLinearMisalignment(t) {
     if (t > 3) {
-        return ` h <= ${0.1 * t} (max 3 mm)`
+        return ` h <= ${(0.1 * t).toFixed(1)} (max 3 mm)`
     }
     if (t <= 0.5) {//THIS ONE IS SOMETHING ELSE
-        return `h <= ${0.5 * t} (max 2 mm)`
+        return `h <= ${(0.5 * t).toFixed(1)} (max 2 mm)`
     }
     if (t <= 0.5 && t > 3) {
-        return `h <= ${0.2 + 0.1 * t};`
+        return `h <= ${(0.2 + 0.1 * t).toFixed(1)};`
     }
 
 }
@@ -322,9 +322,9 @@ function BLinearMisalignment(t) {
  */
 function BIncorrectRootGapOrFilletWelds(a, t) {
     if (t > 3) {
-        return ` h <= ${0.5 + 0.1 * a} (max 2 mm)`
+        return ` h <= ${(0.5 + 0.1 * a).toFixed(1)} (max 2 mm)`
     }
     if (t <= 0.5 && t > 3) {
-        return `h <= ${0.2 + 0.1 * a}`;
+        return `h <= ${(0.2 + 0.1 * a).toFixed(1)}`;
     }
 }
