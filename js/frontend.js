@@ -2,23 +2,32 @@ import { BGrading } from '../js/GradeB.js';
 import { CGrading } from '../js/GradeC.js';
 import { DGrading } from '../js/GradeD.js';
 document.getElementById("gradeWeld").addEventListener("click", handleData);
+
 localStorage.clear();
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('/js/service-worker.js')
+    .then(() => { console.log('Service Worker Registered'); });
+}
+
+
 function handleData(event) {
   document.getElementById("gradeWeld").disabled = true;
   let data = extractData();
 
   if (data.Grading.includes("GradeB")) {
-    const res = { Grade: 'D', data: BGrading(0, data.T, data.isFilletWeld) };//Create a proper json string instead
+    const res = { Grade: 'D', data: BGrading(0, data.T, data.B, data.isFilletWeld) };//Create a proper json string instead
     const resJson = JSON.stringify(res);
     localStorage.setItem("results", resJson);
   }
   if (data.Grading.includes("GradeC")) {
-    const res = { Grade: 'C', data: CGrading(data.S, 0, data.T, data.isFilletWeld) };//Create a proper json string instead
+    const res = { Grade: 'C', data: CGrading(data.S, 0, data.T, data.B, data.isFilletWeld) };//Create a proper json string instead
     const resJson = JSON.stringify(res);
     localStorage.setItem("results", resJson);
   }
   if (data.Grading.includes("GradeD")) {
-    const res = { Grade: 'D', data: DGrading(data.S, 0, data.T, data.isFilletWeld) };//Create a proper json string instead
+    const res = { Grade: 'D', data: DGrading(data.S, 0, data.T, data.B, data.isFilletWeld) };//Create a proper json string instead
     const resJson = JSON.stringify(res);
     localStorage.setItem("results", resJson);
   }
@@ -42,10 +51,4 @@ function extractData() {
   InputData.Grading = checkedValue;
   console.log("Extracted"); console.log(InputData);
   return InputData;
-}
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker
-    .register('/js/service-worker.js')
-    .then(() => { console.log('Service Worker Registered'); });
 }

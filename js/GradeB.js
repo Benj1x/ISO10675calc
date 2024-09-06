@@ -2,11 +2,12 @@ export { BGrading };
 //CHECK REMARKS VED ALLE
 //Gå igennem alle formler, og sørg for at alle er der OG ingen mangler
 /*I needed a way to recognize when one result start, and one ends, realistically the performance doesn't matter too much*/
-function BGrading(a, t, isFilletWeld) {
+function BGrading(a, t, b, isFilletWeld) {
+    console.log(a + ", " + t+ ", " + b)
     const BRes = {Crack: BCrack(t), CraterCrack: BCraterCrack(t), SurfacePore: BSurfacePore(), EndCraterPipe: BEndCraterPipe(),
         LackOfFusion: BLackOfFusion(), MLackOfFusion: BMicroLackOfFusion(), IncompleteRPen: BIncompleteRootPenetration(),
-        InterUcut: BIntermittenUndercut(t), ShrinkGroove: BShrinkageGroove(t), /*ExcessWeld: BExcessWeldMetal(b), ExcessConvex: BExcessiveConvexity(b), 
-        ExcessPen: BExcessPenetration(b, t),*/ IncorrectWToe: BIncorrectWeldToe(isFilletWeld), Overlap: BOverlap(), NonFW: BNonFilledWeld(t),
+        InterUcut: BIntermittenUndercut(t), ShrinkGroove: BShrinkageGroove(t), ExcessWeld: BExcessWeldMetal(b), ExcessConvex: BExcessiveConvexity(b), 
+        ExcessPen: BExcessPenetration(b, t), IncorrectWToe: BIncorrectWeldToe(isFilletWeld), Overlap: BOverlap(), NonFW: BNonFilledWeld(t),
         BurnThrough: BBurnThrough(), ExcessAsymmFW: BExcessiveAsymmetryFilletWeld(t, a), RootConcav: BRootConcavity(t), RootPoro: BRootPorosity(t),
         PoorStart: BPoorStart(t), InsuffTT: BInsufficientThroatThickness(), ExcessTT: BExcessiveThroatThickness(a, t), StrayArc: BStrayArc(),
         Spatter: BSpatter(t), TemperColour: BTemperColour(t), LinearMis: BLinearMisalignment(t), IncorrRootGapOrFW: BIncorrectRootGapOrFilletWelds(a, t)

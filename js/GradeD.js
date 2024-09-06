@@ -2,11 +2,11 @@ export { DGrading };
 //CHECK REMARKS VED ALLE
 //Gå igennem alle formler, og sørg for at alle er der OG ingen mangler
 /*I needed a way to recognize when one result start, and one ends, realistically the performance doesn't matter too much*/
-function DGrading(s, a, t, isFilletWeld) {
+function DGrading(s, a, t,  b,  isFilletWeld) {
     const DRes = { Crack: DCrack(t), CraterCrack: DCraterCrack(t), SurfacePore: DSurfacePore(s, t), EndCraterPipe: DEndCraterPipe(t),
         LackOfFusion: DLackOfFusion(), MLackOfFusion: DMicroLackOfFusion(), IncompleteRPen: DIncompleteRootPenetration(t),
-        InterUcut: DIntermittenUndercut(t), ShrinkGroove: DShrinkageGroove(t), /*ExcessWeld: DExcessWeldMetal(b), ExcessConvex: DExcessiveConvexity(b), 
-        ExcessPen:  DExcessPenetration(b, t),*/ IncorrectWToe: DIncorrectWeldToe(), /*Overlap: DOverlap(b),*/ NonFW: DNonFilledWeld(t),
+        InterUcut: DIntermittenUndercut(t), ShrinkGroove: DShrinkageGroove(t), ExcessWeld: DExcessWeldMetal(b), ExcessConvex: DExcessiveConvexity(b), 
+        ExcessPen:  DExcessPenetration(b, t), IncorrectWToe: DIncorrectWeldToe(), Overlap: DOverlap(b), NonFW: DNonFilledWeld(t),
         BurnThrough: DBurnThrough(), ExcessAsymmFW: DExcessiveAsymmetryFilletWeld(a), RootConcav: DRootConcavity(t), RootPoro: DRootPorosity(t),
         PoorStart: DPoorStart(t), InsuffTT: DInsufficientThroatThickness(a, t), ExcessTT: DExcessiveThroatThickness(), StrayArc: DStrayArc(t),
         Spatter: DSpatter(t), TemperColour: DTempercolour(t), LinearMis: DLinearMisalignment(t), IncorrRootGapOrFW: DIncorrectRootGapOrFilletWelds(a, t)

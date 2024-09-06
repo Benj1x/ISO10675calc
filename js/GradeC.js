@@ -2,11 +2,11 @@ export { CGrading };
 //CHECK REMARKS VED ALLE
 //Gå igennem alle formler, og sørg for at alle er der OG ingen mangler
 /*I needed a way to recognize when one result start, and one ends, realistically the performance doesn't matter too much*/
-function CGrading(s, a, t, isFilletWeld) {
+function CGrading(s, a, t,  b,  isFilletWeld) {
     const CRes = {Crack: CCrack(t), CraterCrack: CCraterCrack(t), SurfacePore: CSurfacePore(s, t), EndCraterPipe: CEndCraterPipe(t),
         LackOfFusion: CLackOfFusion(), MLackOfFusion: CMicroLackOfFusion(), IncompleteRPen: CIncompleteRootPenetration(),
-        InterUcut: CIntermittenUndercut(t), ShrinkGroove: CShrinkageGroove(t), /*ExcessWeld: CExcessWeldMetal(b, t), ExcessConvex: CExcessiveConvexity(b, t), 
-        ExcessPen: CExcessPenetration(b, t),*/ IncorrectWToe: CIncorrectWeldToe(isFilletWeld), Overlap: COverlap(), NonFW: CNonFilledWeld(t),
+        InterUcut: CIntermittenUndercut(t), ShrinkGroove: CShrinkageGroove(t), ExcessWeld: CExcessWeldMetal(b, t), ExcessConvex: CExcessiveConvexity(b, t), 
+        ExcessPen: CExcessPenetration(b, t), IncorrectWToe: CIncorrectWeldToe(isFilletWeld), Overlap: COverlap(), NonFW: CNonFilledWeld(t),
         BurnThrough: CBurnThrough(), ExcessAsymmFW: CExcessiveAsymmetryFilletWeld(a, t), RootConcav: CRootConcavity(t), RootPoro: CRootPorosity(t),
         PoorStart: CPoorStart(t), InsuffTT: CInsufficientThroatThickness(a, t), ExcessTT: CExcessiveThroatThickness(a, t), StrayArc: CStrayArc(),
         Spatter: CSpatter(t), TemperColour: CTempercolour(t), LinearMis: CLinearMisalignment(t), IncorrRootGapOrFW: CIncorrectRootGapOrFilletWelds(a, t)
