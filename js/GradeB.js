@@ -3,7 +3,6 @@ export { BGrading };
 //Gå igennem alle formler, og sørg for at alle er der OG ingen mangler
 /*I needed a way to recognize when one result start, and one ends, realistically the performance doesn't matter too much*/
 function BGrading(a, t, b, isFilletWeld) {
-    console.log(a + ", " + t+ ", " + b)
     const BRes = {Crack: BCrack(t), CraterCrack: BCraterCrack(t), SurfacePore: BSurfacePore(), EndCraterPipe: BEndCraterPipe(),
         LackOfFusion: BLackOfFusion(), MLackOfFusion: BMicroLackOfFusion(), IncompleteRPen: BIncompleteRootPenetration(),
         InterUcut: BIntermittenUndercut(t), ShrinkGroove: BShrinkageGroove(t), ExcessWeld: BExcessWeldMetal(b), ExcessConvex: BExcessiveConvexity(b), 
