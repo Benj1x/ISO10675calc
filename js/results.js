@@ -23,7 +23,7 @@ function home(){
 }
 
 const hResults = document.getElementById("results");
-hResults.textContent = "Accept niveau: " + res.Grade;
+hResults.textContent = "Accept niveau / Acceptance level: " + res.Grade;
 
 const pCrack = document.getElementById("Crack");
 const pCraterCrack = document.getElementById("CraterCrack");
