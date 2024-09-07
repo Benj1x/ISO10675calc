@@ -3,6 +3,12 @@ import { CGrading } from '../js/GradeC.js';
 import { DGrading } from '../js/GradeD.js';
 document.getElementById("gradeWeld").addEventListener("click", handleData);
 
+
+document.getElementById("toInfo").addEventListener("click", Navigate);
+function Navigate(){
+  window.location.href="info.html"
+}
+
 localStorage.clear();
 
 if ('serviceWorker' in navigator) {
