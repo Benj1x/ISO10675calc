@@ -14,7 +14,7 @@
 <body>
     <button id="Back" type="button"><span>Go Back?</span></button>
     <section id="DataInput_id">
-        <h2 id="id2">Results</h2>
+        <h2 id="results">{}</h2>
         <button type="button" class="collapsible">Revne / Crack</button>
         <div class="content">
         <p id="Crack">If you are seeing this text, it means something went wrong :(</p>
@@ -22,16 +22,18 @@
         <button type="button" class="collapsible">Kraterrevne / Crater crack</button>
         <div class="content">
         <p id="CraterCrack">If you are seeing this text, it means something went wrong :(</p>
-        <img src="imgs/remarks/CraterCrack.png" alt="Crater Crack remarks" width="247px" height="272" />
+        <img src="imgs/remarks/CraterCrack.png" alt="Crater Crack remarks" width="247px" height="272px"/>
 
         </div>
         <button type="button" class="collapsible">Overfladepore / Surface pore</button>
         <div class="content">
         <p id="SurfacePore">If you are seeing this text, it means something went wrong :(</p>
+        <p>Maks. dimension af en enkelt pore: s=stumpsøm a=kantsøm / Maximum dimension of a single for: s=butt weld a=fillet weld</p>
         </div>
         <button type="button" class="collapsible">Åben kraterpore / End crater pipe</button>
         <div class="content">
         <p id="EndCraterPipe">If you are seeing this text, it means something went wrong :(</p>
+        <img src="imgs/remarks/EndCraterPipe.png" alt="Crater Crack remarks" width="358px" height="175px"/>
         </div>
         <button type="button" class="collapsible">Bindingsfejl / lack of fusion</button>
         <div class="content">
@@ -40,42 +42,54 @@
         <button type="button" class="collapsible">MikroBindingsfejl / Micro lack of fusion</button>
         <div class="content">
         <p id="MLackOfFusion">If you are seeing this text, it means something went wrong :(</p>
+        <p>*Mikrobindingsfejl kun detekterbare ved mikroundersøglse / Only detected by micro examination</p>
         </div>
         <button type="button" class="collapsible">Rodfejl / Incomplete root penetration</button>
         <div class="content">
         <p id="IncompleteRPen">If you are seeing this text, it means something went wrong :(</p>
+        <img src="imgs/remarks/IncompleteRPen.png" alt="Crater Crack remarks" width="358px" height="119px"/>
         </div>
         <button type="button" class="collapsible">(Kontinueret) Lokal sidekærv / (Continuos) Intermittent undercut</button>
         <div class="content">
         <p id="InterUcut">If you are seeing this text, it means something went wrong :(</p>
+        <img src="imgs/remarks/InterUcut.png" alt="Crater Crack remarks" width="354px" height="239px"/>
         </div>
         <button type="button" class="collapsible">Rodkærv / Shrinkage groove</button>
         <div class="content">
         <p id="ShrinkGroove">If you are seeing this text, it means something went wrong :(</p>
+        <p>*Kun korte fejl / *Only to short imperfections</p>
+        <img src="imgs/remarks/InterUcut.png" alt="Crater Crack remarks" width="363px" height="108px"/>
         </div>
         <button type="button" class="collapsible">Overvulst / Excess weld metal</button>
         <div class="content">
         <p id="ExcessWeld">If you are seeing this text, it means something went wrong :(</p>
+        <img src="imgs/remarks/ExcessWeld.png" alt="Crater Crack remarks" width="356px" height="198px"/>
         </div>
         <button type="button" class="collapsible">Konveks sømoverflade / Excessive convexity</button>
         <div class="content">
         <p id="ExcessConvex">If you are seeing this text, it means something went wrong :(</p>
+        <img src="imgs/remarks/ExcessConvex.png" alt="Crater Crack remarks" width="356px" height="267px"/>
         </div>
         <button type="button" class="collapsible">Rodvulst/Excess penetration</button>
         <div class="content">
         <p id="ExcessPen">If you are seeing this text, it means something went wrong :(</p>
+        <img src="imgs/remarks/ExcessPen.png" alt="Crater Crack remarks" width="366px" height="339px"/>
         </div>
         <button type="button" class="collapsible">Forkert overgang / Incorrect Weld toe</button>
         <div class="content">
         <p id="IncorrectWToe">If you are seeing this text, it means something went wrong :(</p>
+        <img src="imgs/remarks/IncorrectWToe.png" alt="Crater Crack remarks" width="348px" height="242px"/>
         </div>
         <button type="button" class="collapsible">Overløbning / Overlap</button>
         <div class="content">
         <p id="Overlap">If you are seeing this text, it means something went wrong :(</p>
+        <img src="imgs/remarks/Overlap.png" alt="Crater Crack remarks" width="357px" height="242px"/>
         </div>
         <button type="button" class="collapsible">Mangelfuld Opfyldning / Non filled weld</button>
         <div class="content">
         <p id="NonFW">If you are seeing this text, it means something went wrong :(</p>
+        <img src="imgs/remarks/NonFW.png" alt="Crater Crack remarks" width="359px" height="203px"/>
+        <p>*Korte fejl / *applies only to short imperfections</p>
         </div>
         <button type="button" class="collapsible">Gennembrænding / Burn through</button>
         <div class="content">
@@ -84,14 +98,17 @@
         <button type="button" class="collapsible">Ulige store ben / Excessive asymmetry of fillet weld</button>
         <div class="content">
         <p id="ExcessAsymmFW">If you are seeing this text, it means something went wrong :(</p>
+        <img src="imgs/remarks/ExcessAsymmFW.png" alt="Crater Crack remarks" width="359px" height="203px"/>
         </div>
         <button type="button" class="collapsible">Indadvælving i roden / Root concavity</button>
         <div class="content">
         <p id="RootConcav">If you are seeing this text, it means something went wrong :(</p>
+        <img src="imgs/remarks/RootConcav.png" alt="Crater Crack remarks" width="359px" height="107px"/>
         </div>
         <button type="button" class="collapsible">Porøsitet i rodvulst / Root porosity</button>
         <div class="content">
         <p id="RootPoro">If you are seeing this text, it means something went wrong :(</p>
+        <p>Svampelignende udseende af svejseroden i svejsemetallet på grund af bobler i svejsemetallet ved størkningen. / Spongy formation at the root of a weld due to bubbling of the weld metal at the moment of solidification</p>
         </div>
         <button type="button" class="collapsible">Fejl ved genstart/Poor start</button>
         <div class="content">
@@ -100,10 +117,12 @@
         <button type="button" class="collapsible">Utilstrækkeligt a-mål / Insufficient throat thickness</button>
         <div class="content">
         <p id="InsuffTT">If you are seeing this text, it means something went wrong :(</p>
+        <img src="imgs/remarks/InsuffTT.png" alt="Crater Crack remarks" width="354px" height="316px"/>
         </div>
         <button type="button" class="collapsible">For stort a-mål / Excessive throat thickness</button>
         <div class="content">
         <p id="ExcessTT">If you are seeing this text, it means something went wrong :(</p>
+        <img src="imgs/remarks/ExcessTT.png" alt="Crater Crack remarks" width="359px" height="312px"/>
         </div>
         <button type="button" class="collapsible">Svejsesprøjt / Spatter</button>
         <div class="content">
@@ -124,6 +143,8 @@
         <button type="button" class="collapsible">Forkert overgang / Incorrect Weld toe</button>
         <div class="content">
         <p id="IncorrRootGapOrFW">If you are seeing this text, it means something went wrong :(</p>
+        <img src="imgs/remarks/IncorrRootGapOrFW.png" alt="Crater Crack remarks" width="342px" height="244px"/>
+
         </div>
     </section>
     

@@ -22,6 +22,9 @@ function home(){
   window.location.href="index.html"
 }
 
+const hResults = document.getElementById("results");
+hResults.textContent = "Accept niveau: " + res.Grade;
+
 const pCrack = document.getElementById("Crack");
 const pCraterCrack = document.getElementById("CraterCrack");
 const pSurfacePore = document.getElementById("SurfacePore");

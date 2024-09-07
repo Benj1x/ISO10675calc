@@ -17,17 +17,17 @@ function handleData(event) {
   let data = extractData();
 
   if (data.Grading.includes("GradeB")) {
-    const res = { Grade: 'D', data: BGrading(0, data.T, data.B, data.isFilletWeld) };//Create a proper json string instead
+    const res = { Grade: 'B', data: BGrading(0, data.T, data.B, data.isFilletWeld) };//Create a proper json string instead
     const resJson = JSON.stringify(res);
     localStorage.setItem("results", resJson);
   }
   if (data.Grading.includes("GradeC")) {
-    const res = { Grade: 'C', data: CGrading(data.S, 0, data.T, data.B, data.isFilletWeld) };//Create a proper json string instead
+    const res = { Grade: 'C', data: CGrading(data.S, Data.A, data.T, data.B, data.isFilletWeld) };//Create a proper json string instead
     const resJson = JSON.stringify(res);
     localStorage.setItem("results", resJson);
   }
   if (data.Grading.includes("GradeD")) {
-    const res = { Grade: 'D', data: DGrading(data.S, 0, data.T, data.B, data.isFilletWeld) };//Create a proper json string instead
+    const res = { Grade: 'D', data: DGrading(data.S, Data.A, data.T, data.B, data.isFilletWeld) };//Create a proper json string instead
     const resJson = JSON.stringify(res);
     localStorage.setItem("results", resJson);
   }
@@ -38,7 +38,7 @@ function handleData(event) {
 function extractData() {
   let InputData = {};
   InputData.T = document.getElementById("PlateT_id").value;
-  InputData.S = document.getElementById("WeldT_id").value;
+  InputData.A = document.getElementById("WeldT_id").value;
   InputData.B = document.getElementById("WidthOfW_id").value;
   InputData.isFilletWeld = document.forms.DataForm_id.weld.value === "filletweld" ? true : false;
   var checkedValue = "";
