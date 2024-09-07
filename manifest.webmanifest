@@ -1,6 +1,6 @@
 {
-    "name": "ISO10675 calculator",
-    "short_name": "ISO10675",
+    "name": "ISO 5817:2014 calculator",
+    "short_name": "ISO 5817:2014",
     "start_url": "/index.html",
     "display": "standalone",
     "background_color": "#ffffff",
