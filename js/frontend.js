@@ -18,7 +18,7 @@ if ('serviceWorker' in navigator) {
 }
 
 
-function handleData(event) {
+function handleData(event) { //503 617 512 5213 5214 617 == kun for kantsøm. 4021 5013 502 504 (509, 511) 510 515 516 507 == Kun stumpsøm
   document.getElementById("gradeWeld").disabled = true;
   let data = extractData();
 
