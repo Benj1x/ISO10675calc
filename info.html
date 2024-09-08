@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ISO10675 calculator</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#000000">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+
+<body>
+    <section id="DataInput_id">
+        <button id="Back" type="button"><span>ISO 5817:2014<span></button>
+        <h2 id="id2">Diverse / Miscellaneous</h2>
+    <h3>Termer og definitioner / Terms and definitions</h3>
+    Korte fejl:<br> 
+    I tilfælde af at svejsningen er 100 mm eller derover, skal fejl anses som korte, hvis de ikke overstiger 25mm
+    for 100mm af svejsningen, som indeholder det største antal fejl. <br>
+    I det tilfælde at svejsningen er mindre end 100mm, må fejlens totale længde ikke være større end 35%
+    af svejsningens længde.<br><br>
+    Short imperfections:<br>
+    In cases when the weld is 100 mm long or longer, imperfections are considered to be short imperfections if, in
+    the 100 mm which contains the greatest number of imperfections, their total length is not greater than 25 mm.<br>
+    In cases when the weld is less than 100 mm long, imperfections are considered to be short imperfections if
+    their total length is not greater than 25 %.
+
+    <h3>Symboler / Symbols:</h3>
+    <table>
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <td>a</td>
+          <td>b</td>
+          <td>d</td>
+          <td>h</td>
+          <td>s</td>
+          <td>t</td>
+          <td>z</td>
+          <td>&alpha;</td>
+        </tr>
+        <tr>
+            <td>Nominel a-mål i en kantsøm / Nominal throat thickness of the fillet weld</td>
+            <td>Overvulst bredde / Width of weld reinforcement</td>
+            <td>Gasporediameter / Diameter of gas pore</td>
+          <td>Fejlens højde eller bredde / Height or width of imperfection</td>
+          <td>Nominel stumpsømtykkelse / Nominal butt weld thickness</td>
+          <td>Væg- eller pladetykkelse (nominelt målt) / Wall or plate thickness (nominal size)</td>
+          <td>Benlængde i en kantsøm / leg length of a fillet weld</td>
+          <td>Vinkel mellem grundmaterialets overflade og svejsesøm / Angle of weld toe</td>
+        </tr>
+      </table>
+      <h3>Beregn a til z / Calculate a to z:</h3> 
+      <label for="ZValue">z:</label>
+      <input type="number" name="ValueZ" id="ZValue" placeholder="0" step="0.1">
+      <h3>Beregn z til a / Calculate z to a:</h3> 
+      <label for="AValue">a:</label>
+      <input type="number" name="ValueA" id="AValue" placeholder="0" step="0.1">
+    </section>
+
+    <script type="module" src="js/calc.js"></script>
+</body>
+<footer>
+    Developed by: Benjamin O. Høj
+    <a class="github" target="_blank" rel="noopener noreferrer" href="https://github.com/Benj1x">
+        <img src="imgs/githubLogo.png" alt="Github logo" width="30px" height="30" />
+    </a>
+    <a class="linkedin" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/benjamin-h%C3%B8j-1106b91bb/">
+        <img src="imgs/LinkedInLogo.png" alt="LinkedIn logo" width="30px" height="30" />
+    </a>
+    <br>
+    Idea and resources: Martin Christoffersen
+    <a class="linkedin" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/martin-christoffersen-26088842/">
+        <img src="imgs/LinkedInLogo.png" alt="LinkedIn logo" width="30px" height="30" />
+    </a>
+    <a target="_blank" rel="noopener noreferrer" href="tel:+4553606219">+4553606219
+    </a>  
+</footer>
+</html>
