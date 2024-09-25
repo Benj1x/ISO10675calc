@@ -1,4 +1,3 @@
-// Install event
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open('IsoCalcCache').then(cache => {

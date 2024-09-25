@@ -288,7 +288,7 @@ div.options > label > img {
 }
 
 div.options > label > input:checked +img {  
-	background: url(http://cdn1.iconfinder.com/data/icons/onebit/PNG/onebit_34.png);
+	background: url(imgs/checkmark.png);
 	background-repeat: no-repeat;
 	background-position:center center;
 	background-size:30px 30px;
