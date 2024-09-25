@@ -2,17 +2,17 @@ self.addEventListener('install', event => {
     event.waitUntil(
         caches.open('IsoCalcCache').then(cache => {
             return cache.addAll([
-                '/index.html',
-                '/results.html',
-                '/index.css',
-                '/js/frontend.js',
-                '/js/results.js',
-                '/js/GradeB.js',
-                '/js/GradeC.js',
-                '/js/GradeD.js',
-                '/imgs/logo.png',
-                '/imgs/LinkedInLogo.png',
-                '/imgs/githubLogo.png'
+                'https://benj1x.github.io/ISO10675calc/index.html',
+                'https://benj1x.github.io/ISO10675calc/results.html',
+                'https://benj1x.github.io/ISO10675calc/index.css',
+                'https://benj1x.github.io/ISO10675calc/js/frontend.js',
+                'https://benj1x.github.io/ISO10675calc/js/results.js',
+                'https://benj1x.github.io/ISO10675calc/js/GradeB.js',
+                'https://benj1x.github.io/ISO10675calc/js/GradeC.js',
+                'https://benj1x.github.io/ISO10675calc/js/GradeD.js',
+                'https://benj1x.github.io/ISO10675calc/imgs/logo.png',
+                'https://benj1x.github.io/ISO10675calc/imgs/LinkedInLogo.png',
+                'https://benj1x.github.io/ISO10675calc/imgs/githubLogo.png'
             ]);
         })
     );
