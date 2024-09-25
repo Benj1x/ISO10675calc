@@ -13,10 +13,13 @@ self.addEventListener('install', event => {
                 '../imgs/logo.png',
                 '../imgs/LinkedInLogo.png',
                 '../imgs/githubLogo.png'
-            ]);
+            ]).catch(error => {
+                console.error('Failed to cache:', error);
+            });
         })
     );
 });
+
 
 // Activate event
 self.addEventListener('activate', event => {
