@@ -18,6 +18,9 @@ if ('serviceWorker' in navigator) {
 }
 
 
+document.getElementById("buttweld").addEventListener('change', toggleVisible);
+document.getElementById("filletweld").addEventListener('change', toggleVisible);
+
 function handleData(event) { //503 617 512 5213 5214 617 == kun for kantsøm. 4021 5013 502 504 (509, 511) 510 515 516 507 == Kun stumpsøm
   document.getElementById("gradeWeld").disabled = true;
   let data = extractData();
@@ -57,4 +60,21 @@ function extractData() {
   InputData.Grading = checkedValue;
   console.log("Extracted"); console.log(InputData);
   return InputData;
+}
+
+//This ain't working
+function toggleVisible(event){
+  let elements = document.getElementById("buttWeldHide");
+  if (document.getElementById("buttweld").value == "buttweld"){
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].classList.remove("setHidden");
+      
+    }
+
+  }else{
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].classList.add("setHidden");
+    }
+  }
+
 }

@@ -115,10 +115,10 @@ function CIntermittenUndercut(t) {
  */
 function CShrinkageGroove(t) {
     if (t > 3) {
-        return `h <= ${0.1 * t} (max 1 mm)*`
+        return `h <= ${0.1 * t} (max 1 mm)`
     }
     if (t >= 0.5 && t <= 3) {
-        return `h <= ${0.1 * t} (max 1 mm)*`
+        return `h <= ${0.1 * t} (max 1 mm)`
     }
     return `h <= ${0.1 * t}*`
 }

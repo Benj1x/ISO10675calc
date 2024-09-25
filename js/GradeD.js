@@ -122,10 +122,10 @@ function DIntermittenUndercut(t) {
  */
 function DShrinkageGroove(t) {
     if (t > 3) {
-        return `h <= ${(0.2 + 0.1 * t).toFixed(1)}*`;
+        return `h <= ${(0.2 + 0.1 * t).toFixed(1)}`;
     }
     if (t >= 0.5 && t <= 3) {
-        return `h <= ${(0.2 * t).toFixed(1)} (max 2 mm)*`
+        return `h <= ${(0.2 * t).toFixed(1)} (max 2 mm)`
     }
 }
 

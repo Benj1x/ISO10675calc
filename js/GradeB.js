@@ -104,7 +104,7 @@ function BIntermittenUndercut(t) {
  */
 function BShrinkageGroove(t) {
     if (t > 3) {
-        return `h <= ${(0.05 * t).toFixed(1)} (max 0,5mm)*`;
+        return `h <= ${(0.05 * t).toFixed(1)} (max 0,5mm)`;
     }
 
     return "Not allowed/Ikke tilladt";

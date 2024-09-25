@@ -1,6 +1,11 @@
 body{
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.setHidden{
+  visibility: collapse;
+}
+
 header{
   height: 50px;
   background-color: oldlace;
