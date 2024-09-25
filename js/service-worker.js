@@ -1,25 +1,22 @@
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open('IsoCalcCache').then(cache => {
-            return cache.addAll([
-                '../index.html',
-                '../results.html',
-                '../index.css',
-                '../js/frontend.js',
-                '../js/results.js',
-                '../js/GradeB.js',
-                '../js/GradeC.js',
-                '../js/GradeD.js',
-                '../imgs/logo.png',
-                '../imgs/LinkedInLogo.png',
-                '../imgs/githubLogo.png'
-            ]).catch(error => {
-                console.error('Failed to cache:', error);
-            });
+            return Promise.all([
+                cache.add('../index.html').catch(error => console.error('Failed to cache index.html:', error)),
+                cache.add('../results.html').catch(error => console.error('Failed to cache results.html:', error)),
+                cache.add('../index.css').catch(error => console.error('Failed to cache index.css:', error)),
+                cache.add('../js/frontend.js').catch(error => console.error('Failed to cache frontend.js:', error)),
+                cache.add('../js/results.js').catch(error => console.error('Failed to cache results.js:', error)),
+                cache.add('../js/GradeB.js').catch(error => console.error('Failed to cache GradeB.js:', error)),
+                cache.add('../js/GradeC.js').catch(error => console.error('Failed to cache GradeC.js:', error)),
+                cache.add('../js/GradeD.js').catch(error => console.error('Failed to cache GradeD.js:', error)),
+                cache.add('../imgs/logo.png').catch(error => console.error('Failed to cache logo.png:', error)),
+                cache.add('../imgs/LinkedInLogo.png').catch(error => console.error('Failed to cache LinkedInLogo.png:', error)),
+                cache.add('../imgs/githubLogo.png').catch(error => console.error('Failed to cache githubLogo.png:', error))
+            ]);
         })
     );
 });
-
 
 // Activate event
 self.addEventListener('activate', event => {
