@@ -1,12 +1,31 @@
 self.addEventListener('install', event => {
     event.waitUntil(
-        caches.open('IsoCalcCache').then(cache => {
-            return cache.add('../index.html').catch(error => { console.error('Failed to cache: ', error) }).then(cache.add('../results.html').catch(error => { console.error('Failed to cache: ', error) })
-                .then(cache.add('../js/frontend.js').catch(error => { console.error('Failed to cache: ', error) }).then(cache.add('../js/results.js').catch(error => { console.error('Failed to cache: ', error) })
-                    .then(cache.add('../js/GradeB.js').catch(error => { console.error('Failed to cache: ', error) }).then(cache.add('../js/GradeC.js').catch(error => { console.error('Failed to cache: ', error) })
-                        .then(cache.add('../js/GradeD.js').catch(error => { console.error('Failed to cache: ', error) }).then(cache.add('../imgs/logo.png').catch(error => { console.error('Failed to cache: ', error) })
-                            .then(cache.add('../imgs/LinkedInLogo.png').catch(error => { console.error('Failed to cache: ', error) }).then(cache.add('../imgs/githubLogo.png').catch(error => { console.error('Failed to cache: ', error) }))
-                            ))))))))}))});
+        caches.open('IsoCalcCache').then(async cache => {
+            const filesToCache = [
+                '/index.html',
+                '/results.html',
+                '/js/frontend.js',
+                '/js/results.js',
+                '/js/GradeB.js',
+                '/js/GradeC.js',
+                '/js/GradeD.js',
+                '/imgs/logo.png',
+                '/imgs/LinkedInLogo.png',
+                '/imgs/githubLogo.png'
+            ];
+
+            for (const file of filesToCache) {
+                try {
+                    await cache.add(file);
+                    console.log(`Successfully cached ${file}`);
+                } catch (error) {
+                    console.error(`Failed to cache ${file}: `, error);
+                }
+            }
+        })
+    );
+});
+
 
 
 // Activate event
