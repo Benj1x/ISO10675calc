@@ -2,16 +2,16 @@ self.addEventListener('install', event => {
     event.waitUntil(
         caches.open('IsoCalcCache').then(async cache => {
             const filesToCache = [
-                '../index.html',
-                '../results.html',
-                '../js/frontend.js',
-                '../js/results.js',
-                '../js/GradeB.js',
-                '../js/GradeC.js',
-                '../js/GradeD.js',
-                '../imgs/logo.png',
-                '../imgs/LinkedInLogo.png',
-                '../imgs/githubLogo.png'
+                '/index.html',
+                '/results.html',
+                '/js/frontend.js',
+                '/js/results.js',
+                '/js/GradeB.js',
+                '/js/GradeC.js',
+                '/js/GradeD.js',
+                '/imgs/logo.png',
+                '/imgs/LinkedInLogo.png',
+                '/imgs/githubLogo.png'
             ];
 
             for (const file of filesToCache) {
