@@ -1,16 +1,15 @@
 {
-    "name": "ISO 5817:2014 calculator",
-    "short_name": "ISO 5817:2014",
-    "start_url": "/index.html",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#000000",
-    "icons": [
+  "name": "ISO 5817:2014 calculator",
+  "short_name": "ISO 5817:2014",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
       {
-        "src": "imgs/logo.png",
-        "sizes": "192x192",
-        "type": "image/png"
+          "src": "/imgs/logo.png",
+          "sizes": "192x192",
+          "type": "image/png"
       }
-    ]
-  }
-  
+  ]
+}
