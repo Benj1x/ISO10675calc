@@ -1,4 +1,3 @@
-// Install event
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open('IsoCalcCache').then(async cache => {
@@ -12,7 +11,8 @@ self.addEventListener('install', event => {
                 '/js/GradeD.js',
                 '/imgs/logo.png',
                 '/imgs/LinkedInLogo.png',
-                '/imgs/githubLogo.png'
+                '/imgs/githubLogo.png',
+                '/offline.html'  // Add your offline fallback page
             ];
 
             for (const file of filesToCache) {
@@ -29,6 +29,7 @@ self.addEventListener('install', event => {
     );
 });
 
+
 // Activate event
 self.addEventListener('activate', event => {
     const cacheWhitelist = ['IsoCalcCache'];
@@ -41,6 +42,20 @@ self.addEventListener('activate', event => {
                     }
                 })
             );
+        })
+    );
+});
+
+self.addEventListener('fetch', event => {
+    event.respondWith(
+        caches.match(event.request).then(response => {
+            // Try cache first, then fetch
+            return response || fetch(event.request).catch(() => {
+                // If the fetch fails (e.g., the user is offline), return the offline fallback page
+                if (event.request.mode === 'navigate') {
+                    return caches.match('/offline.html');
+                }
+            });
         })
     );
 });
