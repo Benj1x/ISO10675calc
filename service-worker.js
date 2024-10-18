@@ -18,7 +18,7 @@ self.addEventListener('install', event => {
                 '/imgs/githubLogo.png',
                 '/imgs/remarks/checkmark.png'
             ];
-
+            
             for (const file of filesToCache) {
                 try {
                     await cache.add(file);
