@@ -1,4 +1,3 @@
-// Install event
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open('IsoCalcCache').then(async cache => {
@@ -23,11 +22,11 @@ self.addEventListener('install', event => {
                     console.error(`Failed to cache ${file}: `, error);
                 }
             }
-        }).catch(error => {
-            console.error("Caching failed during install: ", error);
         })
     );
 });
+
+
 
 // Activate event
 self.addEventListener('activate', event => {
@@ -45,18 +44,11 @@ self.addEventListener('activate', event => {
     );
 });
 
-// Fetch event with fallback strategy for iOS
+// Fetch event
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request).then(response => {
-            // Try cache first, then fetch, and handle fetch errors
-            return response || fetch(event.request).catch(error => {
-                console.error('Fetch failed; returning offline fallback.', error);
-                // Provide a fallback for requests
-                if (event.request.mode === 'navigate') {
-                    return caches.match('/index.html');
-                }
-            });
+            return response || fetch(event.request);
         })
     );
 });
@@ -65,7 +57,12 @@ self.addEventListener('fetch', event => {
 self.addEventListener('message', event => {
     if (event.data.action === 'skipWaiting') {
         self.skipWaiting();
-    } else if (event.data.action === 'checkForUpdates') {
+    }
+});
+
+// Check for updates and notify the client
+self.addEventListener('message', event => {
+    if (event.data.action === 'checkForUpdates') {
         fetch('/').then(response => {
             if (response.status === 200) {
                 self.clients.matchAll().then(clients => {
