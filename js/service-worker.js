@@ -4,10 +4,6 @@ self.addEventListener('install', event => {
             const filesToCache = [
                 '/index.html',
                 '/results.html',
-                '/info.html',
-                '/offline.html',
-                '/style.css',
-                '/js/calc.js',
                 '/js/frontend.js',
                 '/js/results.js',
                 '/js/GradeB.js',
@@ -16,7 +12,7 @@ self.addEventListener('install', event => {
                 '/imgs/logo.png',
                 '/imgs/LinkedInLogo.png',
                 '/imgs/githubLogo.png',
-                '/imgs/remarks/checkmark.png'
+                '/offline.html'  // Add your offline fallback page
             ];
 
             for (const file of filesToCache) {
