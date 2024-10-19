@@ -49,11 +49,27 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request).then(response => {
+            // Try cache first, then fetch
             return response || fetch(event.request).catch(() => {
-                // Handle offline scenario
+                // If the fetch fails (e.g., the user is offline), return the offline fallback page
                 if (event.request.mode === 'navigate') {
-                    // If offline and navigating, serve offline page
                     return caches.match('/offline.html');
+                }
+            });
+        })
+    );
+});
+
+// Fetch event with fallback strategy for iOS
+self.addEventListener('fetch', event => {
+    event.respondWith(
+        caches.match(event.request).then(response => {
+            // Try cache first, then fetch, and handle fetch errors
+            return response || fetch(event.request).catch(error => {
+                console.error('Fetch failed; returning offline fallback.', error);
+                // Provide a fallback for requests
+                if (event.request.mode === 'navigate') {
+                    return caches.match('/index.html');
                 }
             });
         })
